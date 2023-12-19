@@ -23,7 +23,7 @@ exec into PostgreSQL docker container: (UPDATES WEBPAGE)
 
 Development environment:\
     1. Frontend uses webpack and allows for hot reloading due to the environment variables in the docker-compose service (Although it is slower)\
-    2. Backend uses nodemon for warm reloading\
+    2. Backend uses nodemon for warm reloading
 
 Productiont environment:\
-    - Does not allow any reloading, so you must rebuild the Dockerfile Images on every code change!\
+    - Does not allow any reloading, so you must rebuild the Dockerfile Images on every code change!
