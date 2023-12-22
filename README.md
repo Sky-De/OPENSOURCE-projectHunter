@@ -8,8 +8,9 @@
         - (to stop) docker compose -f compose.dev.yml down
 * Manually
     * Development:
-        - (frontend) npm start
-        - (backend) npm start
+        - Open two terminals, one you must "cd frontend" and the other, "cd backend"
+        - In each you first run "npm install"
+        - In each, you run "npm start
         - (PostgreSQL) Must setup server on your own and connect manually
 
 exec into PostgreSQL docker container: (UPDATES WEBPAGE)
