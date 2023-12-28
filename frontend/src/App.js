@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./App.css";
 
 function App() {
   let userEndpoint = "http://localhost:4000/user";
@@ -45,27 +46,60 @@ function App() {
 
   return (
     <div className="App">
-      <h4>Username</h4>
-      <input
-        type="text"
-        onChange={(e) => {
-          setUsername(e.target.value);
-        }}
-      />
-      <h4>Password</h4>
-      <input
-        type="password"
-        onChange={(e) => {
-          setPassword(e.target.value);
-        }}
-      />
-      <br />
-      <br />
-      <button onClick={getUser}>Get User Info</button> <br />
-      <button onClick={createUser}>Create a User</button> <br />
-      <button onClick={login}>Login</button> <br />
-      <button onClick={logout}>Logout</button> <br />
-      <h1>{text}</h1>
+      <nav className="navbar navbar-light bg-light">
+        <a className="navbar-brand" href="/">
+          <i className="fa-solid fa-feather-pointed mr-2"></i> CupidConnect
+        </a>
+      </nav>
+      <div className="split left">
+        <div className="centered">
+          <h1 className="mb-4">Login</h1>
+          <div>
+            <i className="fa-solid fa-user mr-2"></i>
+            <input
+              className="mb-2"
+              type="text"
+              placeholder="Username"
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
+            />
+            <br />
+            <i className="fa-solid fa-lock mr-2"></i>
+            <input
+              type="password"
+              placeholder="Password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
+          </div>
+          <br />
+          <div className="mb-2">
+            <button className="mr-1" onClick={getUser}>
+              Get User Info
+            </button>
+            <button onClick={createUser}>Create a User</button> <br />
+          </div>
+          <div className="mb-4">
+            <button className="mr-1" onClick={login}>
+              Login
+            </button>
+            <button onClick={logout}>Logout</button> <br />
+          </div>
+          <h2>{text}</h2>
+        </div>
+      </div>
+
+      <div className="split right d-none d-md-block">
+        <div className="centered">
+          <img
+            src={process.env.PUBLIC_URL + "/dating2.svg"}
+            alt="Couple dating SVG"
+            width="400"
+          />
+        </div>
+      </div>
     </div>
   );
 }
