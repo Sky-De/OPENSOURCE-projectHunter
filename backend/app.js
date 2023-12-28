@@ -32,8 +32,10 @@ seq.sync()
 //--------------------------
 
 
-const app = express()
-const port = 4000
+const sequelize = new Sequelize({
+  dialect: "sqlite",
+  storage: ":memory:", // Use an in-memory database
+});
 
 const corsOptions = { 
     AccessControlAllowOrigin: '*',  
@@ -72,7 +74,17 @@ app.delete('/user', async (req, res) => { // Logout
     res.json({message: 'Logged out...'})
 })
 
+app.put("/user", async (req, res) => {
+  // Login
+  const data = req.body;
+  res.json({ message: data });
+});
+
+app.delete("/user", async (req, res) => {
+  // Logout
+  res.json({ message: "Logged out..." });
+});
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-})
+  console.log(`Example app listening on port ${port}`);
+});
