@@ -1,76 +1,78 @@
-import cors from "cors";
-import express from "express";
-// import pkg from "pg";
-// const { Client } = pkg;
-import { Sequelize, DataTypes } from "sequelize";
+import cors from 'cors'
+import express from 'express'
+import { Sequelize } from 'sequelize';
+
+//--------------------------
+const seq = new Sequelize({
+    dialect: 'postgres',
+    host: 'postgres_container',
+    database: 'test_db',
+    username: 'root',
+    password: 'root',
+    port: 5432,
+});
+
+const User = seq.define('User', {
+    id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+    },
+    username: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+    password: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    }
+});
+
+seq.sync()
+//--------------------------
+
 
 const sequelize = new Sequelize({
   dialect: "sqlite",
   storage: ":memory:", // Use an in-memory database
 });
 
-// Define a User model
-const User = sequelize.define("User", {
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-});
+const corsOptions = { 
+    AccessControlAllowOrigin: '*',  
+    origin: '*',  
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE' 
+  }
+  
+app.use(cors(corsOptions))
+app.use(express.json())
 
-// Sync the model with the database
-sequelize.sync();
-// const pool = new Client({
-//   user: "root",
-//   host: "172.19.0.2",
-//   database: "test_db",
-//   password: "root",
-//   port: 5432,
-// });
-// await pool.connect();
-const app = express();
-const port = 4000;
+app.get('/user', async (req,res) => { // Returns user information
+    res.json({message: 'Getting user'})
+})
 
-const corsOptions = {
-  // origin:'https://abc.onrender.com',
-  AccessControlAllowOrigin: "*",
-  origin: "*",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-};
-app.use(cors(corsOptions));
-app.use(express.json());
+app.post('/user', async (req, res) => { // Creates an account
+    const data = req.body
+    const user = await User.create({
+        username: data.username,
+        password: data.password,
+    })
+    res.json(user)
+})
 
-// const createTableQuery = `CREATE TABLE IF NOT EXISTS user_table (
-//     id SERIAL PRIMARY KEY,
-//     username VARCHAR(255) NOT NULL,
-//     password VARCHAR(255) NOT NULL
-//     );`;
-app.get("/user", async (req, res) => {
-  // Returns user information
-  //   const client = await pool.connect();
-  res.json({ message: "Getting user" });
-  //   const result = await client.query(createTableQuery);
-});
+app.put('/user', async (req, res) => { // Login
+    const data = req.body
+    const user = await User.findOne({where: {username: data.username}})
+    if (user){
+        res.json(user)
+    }
+    else{
+        res.status(400).send("User Not Found")
+    }
+})
 
-app.post("/user", async (req, res) => {
-  // Creates an account
-  //   const insertUserQuery = `INSERT INTO user_table (username, password)
-  //     VALUES ($1, $2)
-  //     RETURNING *;`;
-  const data = req.body;
-  const user = await User.create({
-    name: data.user,
-  });
-  res.json(user);
-  //   const rdata = await pool.query(insertUserQuery, [
-  //     data.username,
-  //     data.password,
-  //   ]);
-});
+app.delete('/user', async (req, res) => { // Logout
+    res.json({message: 'Logged out...'})
+})
 
 app.put("/user", async (req, res) => {
   // Login

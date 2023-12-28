@@ -20,10 +20,10 @@ function App() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ user: username, password: password }),
-    });
-    const data = await response.json();
-    setText(`Created ${data.name}`);
+      body: JSON.stringify({username: username, password: password}),
+    })
+    const data = await response.json()
+    setText(`Created ${data.username}`)
   }
 
   async function login() {
@@ -32,10 +32,10 @@ function App() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ user: username, password: password }),
-    });
-    const data = await response.json();
-    setText(`Welcome ${data.message.user}`);
+      body: JSON.stringify({username: username, password: password}),
+    })
+    const data = await response.json()
+    setText(`Welcome ${data.username}`)
   }
 
   async function logout() {
