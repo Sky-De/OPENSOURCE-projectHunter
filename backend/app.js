@@ -1,37 +1,90 @@
 import cors from 'cors'
 import express from 'express'
+import { Sequelize } from 'sequelize';
 
-const app = express()
-const port = 4000
+//--------------------------
+const seq = new Sequelize({
+    dialect: 'postgres',
+    host: 'postgres_container',
+    database: 'test_db',
+    username: 'root',
+    password: 'root',
+    port: 5432,
+});
+
+const User = seq.define('User', {
+    id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+    },
+    username: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+    password: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    }
+});
+
+seq.sync()
+//--------------------------
+
+
+const sequelize = new Sequelize({
+  dialect: "sqlite",
+  storage: ":memory:", // Use an in-memory database
+});
 
 const corsOptions = { 
-    // origin:'https://abc.onrender.com',
     AccessControlAllowOrigin: '*',  
     origin: '*',  
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE' 
   }
+  
 app.use(cors(corsOptions))
 app.use(express.json())
 
-app.get('/user', (req,res) => { // Returns user information
+app.get('/user', async (req,res) => { // Returns user information
     res.json({message: 'Getting user'})
 })
 
-app.post('/user', (req, res) => { // Creates an account
+app.post('/user', async (req, res) => { // Creates an account
     const data = req.body
-    res.json({message: data})
+    const user = await User.create({
+        username: data.username,
+        password: data.password,
+    })
+    res.json(user)
 })
 
-app.put('/user', (req, res) => { // Login
+app.put('/user', async (req, res) => { // Login
     const data = req.body
-    res.json({message: data})
+    const user = await User.findOne({where: {username: data.username}})
+    if (user){
+        res.json(user)
+    }
+    else{
+        res.status(400).send("User Not Found")
+    }
 })
 
-app.delete('/user', (req, res) => { // Logout
+app.delete('/user', async (req, res) => { // Logout
     res.json({message: 'Logged out...'})
 })
 
+app.put("/user", async (req, res) => {
+  // Login
+  const data = req.body;
+  res.json({ message: data });
+});
+
+app.delete("/user", async (req, res) => {
+  // Logout
+  res.json({ message: "Logged out..." });
+});
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-})
+  console.log(`Example app listening on port ${port}`);
+});
