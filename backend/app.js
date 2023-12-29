@@ -31,12 +31,6 @@ const User = seq.define('User', {
 seq.sync()
 //--------------------------
 
-
-const sequelize = new Sequelize({
-  dialect: "sqlite",
-  storage: ":memory:", // Use an in-memory database
-});
-
 const corsOptions = { 
     AccessControlAllowOrigin: '*',  
     origin: '*',  
