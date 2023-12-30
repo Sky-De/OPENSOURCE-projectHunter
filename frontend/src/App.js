@@ -1,5 +1,7 @@
 import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import { NavbarBootstrap } from "./components/navbarBS";
 
 function App() {
   let userEndpoint = "http://localhost:4000/user";
@@ -20,10 +22,10 @@ function App() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({username: username, password: password}),
-    })
-    const data = await response.json()
-    setText(`Created ${data.username}`)
+      body: JSON.stringify({ username: username, password: password }),
+    });
+    const data = await response.json();
+    setText(`Created ${data.username}`);
   }
 
   async function login() {
@@ -32,10 +34,10 @@ function App() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({username: username, password: password}),
-    })
-    const data = await response.json()
-    setText(`Welcome ${data.username}`)
+      body: JSON.stringify({ username: username, password: password }),
+    });
+    const data = await response.json();
+    setText(`Welcome ${data.username}`);
   }
 
   async function logout() {
@@ -46,11 +48,7 @@ function App() {
 
   return (
     <div className="App">
-      <nav className="navbar navbar-light bg-light">
-        <a className="navbar-brand" href="/">
-          <i className="fa-solid fa-feather-pointed mr-2"></i> CupidConnect
-        </a>
-      </nav>
+      <NavbarBootstrap />
       <div className="split left">
         <div className="centered">
           <h1 className="mb-4">Login</h1>
