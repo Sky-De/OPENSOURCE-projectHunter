@@ -1,0 +1,75 @@
+:root {
+  --gradient: linear-gradient(
+    40deg,
+    rgba(237, 67, 103, 1) 0%,
+    rgba(242, 127, 109, 1) 100%
+  );
+  --light-gray: #f8f9fa;
+  --dark-gray: #707070;
+  --white: #ffffff;
+  --primary: #ed4367;
+  --secondary: #f27f6d;
+  --tertiary: #c92a40;
+}
+
+nav {
+  z-index: 1;
+}
+
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+.left {
+  left: 0;
+}
+.right {
+  right: 0;
+  background: rgb(237, 67, 103);
+  background: var(--gradient);
+}
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+button {
+  border: none;
+  background: var(--primary);
+  color: var(--white);
+  font-weight: 500;
+  border-radius: 0.5em;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 100ms ease-in-out;
+}
+button:hover {
+  background: var(--tertiary);
+}
+
+input[type="text"],
+input[type="password"] {
+  background-color: var(--light-gray);
+  border: none;
+  border-radius: 0.5em;
+  padding: 8px 10px;
+  width: 280px;
+}
+.fa-user,
+.fa-lock {
+  color: var(--dark-gray);
+}
+
+@media (max-width: 767px) {
+  .split {
+    height: 100%;
+    width: 100%;
+  }
+}
