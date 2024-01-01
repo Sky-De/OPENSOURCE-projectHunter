@@ -1,7 +1,5 @@
 import { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import { NavbarBootstrap } from "./components/navbarBS";
 
 function App() {
   let userEndpoint = "http://localhost:4000/user";
@@ -48,7 +46,6 @@ function App() {
 
   return (
     <div className="App">
-      <NavbarBootstrap />
       <div className="split left">
         <div className="centered">
           <h1 className="mb-4">Login</h1>
