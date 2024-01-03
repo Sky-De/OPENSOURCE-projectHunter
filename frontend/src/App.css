@@ -26,6 +26,7 @@ nav {
 }
 .left {
   left: 0;
+  background: var(--white);
 }
 .right {
   right: 0;
@@ -40,7 +41,7 @@ nav {
   text-align: center;
 }
 
-button {
+button.login-form {
   border: none;
   background: var(--primary);
   color: var(--white);
@@ -50,7 +51,7 @@ button {
   cursor: pointer;
   transition: all 100ms ease-in-out;
 }
-button:hover {
+button.login-form:hover {
   background: var(--tertiary);
 }
 
