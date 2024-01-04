@@ -1,0 +1,40 @@
+:root {
+  --gradient: linear-gradient(
+    40deg,
+    rgba(237, 67, 103, 1) 0%,
+    rgba(242, 127, 109, 1) 100%
+  );
+  --light-gray: #f8f9fa;
+  --dark-gray: #707070;
+  --white: #ffffff;
+  --primary: #ed4367;
+  --secondary: #f27f6d;
+  --tertiary: #c92a40;
+}
+
+.register {
+  background: rgb(237, 67, 103);
+  background: var(--gradient);
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  padding-top: 20px;
+}
+
+.carousel-inner .carousel-item {
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+
+.slide {
+  padding: 15px;
+  background-color: var(--white);
+  border-radius: 0.5em;
+  width: 500px;
+  height: 450px;
+}
+
+.slider-item {
+  text-align: center;
+}

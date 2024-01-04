@@ -20,10 +20,10 @@ function App() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({username: username, password: password}),
-    })
-    const data = await response.json()
-    setText(`Created ${data.username}`)
+      body: JSON.stringify({ username: username, password: password }),
+    });
+    const data = await response.json();
+    setText(`Created ${data.username}`);
   }
 
   async function login() {
@@ -32,10 +32,10 @@ function App() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({username: username, password: password}),
-    })
-    const data = await response.json()
-    setText(`Welcome ${data.username}`)
+      body: JSON.stringify({ username: username, password: password }),
+    });
+    const data = await response.json();
+    setText(`Welcome ${data.username}`);
   }
 
   async function logout() {
@@ -46,11 +46,6 @@ function App() {
 
   return (
     <div className="App">
-      <nav className="navbar navbar-light bg-light">
-        <a className="navbar-brand" href="/">
-          <i className="fa-solid fa-feather-pointed mr-2"></i> CupidConnect
-        </a>
-      </nav>
       <div className="split left">
         <div className="centered">
           <h1 className="mb-4">Login</h1>
@@ -76,16 +71,22 @@ function App() {
           </div>
           <br />
           <div className="mb-2">
-            <button className="mr-1" onClick={getUser}>
+            <button className="login-form mr-1" onClick={getUser}>
               Get User Info
             </button>
-            <button onClick={createUser}>Create a User</button> <br />
+            <button className="login-form" onClick={createUser}>
+              Create a User
+            </button>
+            <br />
           </div>
           <div className="mb-4">
-            <button className="mr-1" onClick={login}>
+            <button className="login-form mr-1" onClick={login}>
               Login
             </button>
-            <button onClick={logout}>Logout</button> <br />
+            <button className="login-form" onClick={logout}>
+              Logout
+            </button>{" "}
+            <br />
           </div>
           <h2>{text}</h2>
         </div>
