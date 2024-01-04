@@ -1,104 +1,174 @@
-import Carousel from "react-bootstrap/Carousel";
+// import Carousel from "react-bootstrap/Carousel";
 
 function SimpleSlider() {
   return (
-    <div className="d-flex justify-content-center">
-      <Carousel
-        className="d-flex justify-content-center align-items-center"
-        data-bs-theme="dark"
-        interval={null}
-      >
-        <Carousel.Item className="panel">
-          <div className="slider-item">
-            <div>
-              <input className="mb-2" type="text" placeholder="Username" />
-              <input className="mb-2" type="text" placeholder="Password" />
-              <input className="mb-2" type="text" placeholder="Email" />
-            </div>
+    <div className="simple-slider">
+      <div className="carousel-container d-flex justify-content-center">
+        <div
+          id="carouselExampleCaptions"
+          class="carousel slide"
+          data-bs-theme="dark"
+          pause="true"
+          data-bs-wrap="false"
+        >
+          <div class="carousel-indicators">
+            <button
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide-to="0"
+              class="active"
+              aria-current="true"
+              aria-label="Slide 1"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide-to="1"
+              aria-label="Slide 2"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide-to="2"
+              aria-label="Slide 3"
+            ></button>
           </div>
-        </Carousel.Item>
-        <Carousel.Item className="panel">
-          <div className="slider-item d-flex justify-content-center">
-            <div>
-              <input className="mb-2" type="text" placeholder="First Name" />
-              <input
-                className="form-control mb-2"
-                id="date"
-                name="date"
-                placeholder="MM/DD/YYY"
-                type="date"
-              />
-              <select
-                class="custom-select my-1 mr-sm-2"
-                id="inlineFormCustomSelectPref"
-              >
-                <option selected>Choose...</option>
-                <option value="1">Male</option>
-                <option value="2">Female</option>
-                <option value="3">Non-binary</option>
-                <option value="3">Other</option>
-              </select>
-            </div>
-          </div>
-        </Carousel.Item>
-        <Carousel.Item className="panel">
-          <div className="slider-item d-flex justify-content-center">
-            <div>
-              <div class="form-check form-check-inline">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="inlineCheckbox1"
-                  value="option1"
-                />
-                <label class="form-check-label" for="inlineCheckbox1">
-                  Men
-                </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="inlineCheckbox2"
-                  value="option2"
-                />
-                <label class="form-check-label" for="inlineCheckbox2">
-                  Women
-                </label>
-              </div>
-              <input
-                className="form-control mb-2"
-                id=""
-                name=""
-                placeholder="Age"
-                type="number"
-                min="18"
-                max="100"
-              />
-              <div>
-                <input
-                  className="form-control mb-2"
-                  id=""
-                  name=""
-                  placeholder="Min"
-                  type="number"
-                  min="18"
-                  max="100"
-                />
-                <input
-                  className="form-control mb-2"
-                  id=""
-                  name=""
-                  placeholder="Max"
-                  type="number"
-                  min="18"
-                  max="100"
-                />
+
+          {/* carousel content */}
+          <div class="carousel-inner">
+            {/* carousel slide 1 */}
+            <div class="carousel-item active">
+              <div className="input-container">
+                <div className="input-content">
+                  <label for="username">Username</label>
+                  <br />
+                  <input
+                    className="register-user mb-2"
+                    type="text"
+                    placeholder="Username"
+                  />
+                  <br />
+                  <label for="password">Password</label>
+                  <br />
+                  <input
+                    className="register-password mb-2"
+                    type="text"
+                    placeholder="Password"
+                  />
+                  <br />
+                  <label for="email">Email</label>
+                  <br />
+                  <input
+                    className="register-email mb-2"
+                    type="text"
+                    placeholder="Email"
+                  />
+                </div>
               </div>
             </div>
+            {/* carousel slide 2 */}
+            <div class="carousel-item">
+              <div className="input-container">
+                <div className="input-content">
+                  <label for="first-name">First Name</label>
+                  <br />
+                  <input
+                    className="register-first mb-2"
+                    type="text"
+                    placeholder="First Name"
+                  />
+                  <br />
+                  <label for="date-of-birth">Date of Birth</label>
+                  <br />
+                  <input className="mb-2" type="date" />
+                  <br />
+                  <label for="gender">Gender</label>
+                  <br />
+                  <select class="custom-select">
+                    <option value="" disabled selected>
+                      Select your gender
+                    </option>
+                    <option value="1">Male</option>
+                    <option value="2">Female</option>
+                    <option value="3">Non-Binary</option>
+                    <option value="4">Other</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            {/* carousel slide 3 */}
+            <div class="carousel-item">
+              <div className="input-container">
+                <div className="input-content">
+                  <label for="gender-preference">Gender Preference</label>
+                  <br />
+                  <div class="form-check mr-2">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="flexCheckDefault"
+                    />
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Men
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="flexCheckDefault"
+                    />
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Women
+                    </label>
+                  </div>
+                  <br />
+                  <label className="mt-2" for="age-preference">
+                    Age Preference
+                  </label>
+                  <br />
+                  <input
+                    className="mb-2"
+                    type="number"
+                    min="18"
+                    max="100"
+                    placeholder="Min Age"
+                  />
+                  <br />
+                  <input
+                    type="number"
+                    min="18"
+                    max="100"
+                    placeholder="Max Age"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
-        </Carousel.Item>
-      </Carousel>
+
+          {/* carousel buttons */}
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

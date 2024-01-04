@@ -1,3 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+:root {
+  --gradient: linear-gradient(
+    40deg,
+    rgba(237, 67, 103, 1) 0%,
+    rgba(242, 127, 109, 1) 100%
+  );
+  --light-gray: #f8f9fa;
+  --dark-gray: #707070;
+  --white: #ffffff;
+  --primary: #ed4367;
+  --secondary: #f27f6d;
+  --tertiary: #c92a40;
+}
