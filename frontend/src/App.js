@@ -71,19 +71,19 @@ function App() {
           </div>
           <br />
           <div className="mb-2">
-            <button className="login-form mr-1" onClick={getUser}>
+            <button className="login-form button-styled mr-1" onClick={getUser}>
               Get User Info
             </button>
-            <button className="login-form" onClick={createUser}>
+            <button className="login-form button-styled" onClick={createUser}>
               Create a User
             </button>
             <br />
           </div>
           <div className="mb-4">
-            <button className="login-form mr-1" onClick={login}>
+            <button className="login-form button-styled mr-1" onClick={login}>
               Login
             </button>
-            <button className="login-form" onClick={logout}>
+            <button className="login-form button-styled" onClick={logout}>
               Logout
             </button>{" "}
             <br />

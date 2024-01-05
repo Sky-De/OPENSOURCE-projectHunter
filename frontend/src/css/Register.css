@@ -1,5 +1,15 @@
 @import "../index.css";
 
+.register-header {
+  background: var(--white);
+  width: 500px;
+  text-align: center;
+  position: relative;
+  padding: 16px 0;
+  border-radius: 0.2em 0.2em 0 0;
+  z-index: 2;
+}
+
 .register {
   background: rgb(237, 67, 103);
   background: var(--gradient);
@@ -7,6 +17,11 @@
   width: 100%;
   position: fixed;
   padding-top: 20px;
+}
+
+.simple-slider {
+  position: relative;
+  bottom: 44px;
 }
 
 .carousel-inner .carousel-item {
@@ -68,7 +83,7 @@ input[type="number"] {
 .form-check-label {
   display: inline;
 }
-input[type="checkbox"] {
+input[type="checkbox"]:checked:before {
   background: var(--white);
 }
 

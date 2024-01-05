@@ -138,11 +138,18 @@ function SimpleSlider() {
                   />
                   <br />
                   <input
+                    className="mb-3"
                     type="number"
                     min="18"
                     max="100"
                     placeholder="Max Age"
                   />
+                  <br />
+                  <div className="d-flex justify-content-center">
+                    <button className="register-form button-styled">
+                      Submit
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

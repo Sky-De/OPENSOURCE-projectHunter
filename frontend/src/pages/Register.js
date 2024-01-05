@@ -6,9 +6,9 @@ const register = () => {
   return (
     <div className="register">
       <div className="container">
-        <h1 className="register-header d-flex justify-content-center mb-3">
-          Register
-        </h1>
+        <div className="header-container d-flex justify-content-center">
+          <h1 className="register-header">Register</h1>
+        </div>
         <SimpleSlider />
       </div>
     </div>

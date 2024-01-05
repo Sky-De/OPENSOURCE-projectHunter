@@ -29,7 +29,7 @@ nav {
   text-align: center;
 }
 
-button.login-form {
+button.button-styled {
   border: none;
   background: var(--primary);
   color: var(--white);
@@ -39,7 +39,7 @@ button.login-form {
   cursor: pointer;
   transition: all 100ms ease-in-out;
 }
-button.login-form:hover {
+button.button-styled:hover {
   background: var(--tertiary);
 }
 
