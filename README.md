@@ -1,4 +1,6 @@
 ### HOW TO RUN
+##### 1. In backend directory, you must "npm install" ( this will change )
+##### 2. In backend directory, create .env file with appropriate "PORT, JWTSECRET, DB_USERNAME, DB_PASSWORD, DB_PORT" environment variables
 * Docker Compose
     * Production: (Creates NGINX web server to serve react-build)     *DOES NOT AUTOMATICALLY UPDATE WEBPAGE WHEN CHANGING REACT! MUST REBUILD!!!*
         - (to run) docker compose -f compose.prod.yml up --build -d

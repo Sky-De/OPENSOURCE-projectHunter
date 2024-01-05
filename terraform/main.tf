@@ -11,10 +11,6 @@ terraform {
   }
 }
 
-provider "aws" {
-  region = var.aws_region
-}
-
 resource "aws_dynamodb_table" "questions" {
   name           = "questions"
   billing_mode   = "PROVISIONED"
