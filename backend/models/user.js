@@ -62,3 +62,14 @@ const User = seq.define('User', {
         type: Sequelize.INTEGER,
     },
 });
+
+/*
+    * 8 characters or more
+    * At least one special character !@#$%^&*()_+
+    * At least one capital letter
+    * At least one number
+    
+    Username unique
+    input validate everything here
+    email verification
+*/
