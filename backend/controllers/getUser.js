@@ -1,19 +1,27 @@
-import jwt from 'jsonwebtoken'
-import { jwtSecret } from '../shared.js'
+import jwt from 'jsonwebtoken';
+import { jwtSecret } from '../shared.js';
 
-export { getUser }
+export { getUser };
 
 async function getUser(req, res) {
-    const of = req.get('Authorization')
-    if (!of ) return res.status(400).json({error: 'token is missing'})
-    const token = of.split('Bearer ')[1]
 
-    if (!token) return res.status(400).json({error: 'token is missing'})
+    const token = getToken(req, res)
+    if ('error' in token){
+        return res.status(token.status).send(token.error)
+    }
+    else {
+        jwt.verify(token, jwtSecret, (err, decoded) => {
+            if (err) return res.status(401).json({error: 'invalid token'});
+            return res.json(decoded)
+        })
+    }
 
-    jwt.verify(token, jwtSecret, (err, decoded) => {
-        if (err){
-            return res.status(401).json({error: 'invalid token'})
-        }
-        res.json(decoded)
-    })
+}
+
+function getToken(req, res) {
+    const bearer = req.get('Authorization')
+    if (!bearer ) return {error: 'token is missing', status: 400};
+    const token = bearer.split('Bearer ')[1]
+    if (!token) return {error: 'token is missing', status: 400};
+    return token
 }

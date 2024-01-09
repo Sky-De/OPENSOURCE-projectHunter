@@ -17,15 +17,15 @@ services:
       - 4000:4000
     volumes:
       - ./backend:/app
-  react:
-    build:
-      context: frontend
-      dockerfile: Dockerfile.dev
-    environment:
-      - WDS_SOCKET_HOST=127.0.0.1
-      - CHOKIDAR_USEPOLLING=true
-      - WATCHPACK_POLLING=true
-    ports:
-      - 3000:3000
-    volumes:
-      - ./frontend/src:/app/src
+  # react:
+  #   build:
+  #     context: frontend
+  #     dockerfile: Dockerfile.dev
+  #   environment:
+  #     - WDS_SOCKET_HOST=127.0.0.1
+  #     - CHOKIDAR_USEPOLLING=true
+  #     - WATCHPACK_POLLING=true
+  #   ports:
+  #     - 3000:3000
+  #   volumes:
+  #     - ./frontend/src:/app/src

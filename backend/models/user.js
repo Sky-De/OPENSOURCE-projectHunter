@@ -1,4 +1,4 @@
-import { seq } from "./index.js";
+import { seq } from "./connection.js";
 import { Sequelize } from "sequelize";
 
 export { User }
@@ -17,7 +17,7 @@ const User = seq.define('User', {
         type: Sequelize.STRING(30),
         allowNull: false,
     },
-    email: {
+    email: { // Email verification
         type: Sequelize.STRING(30),
         allowNull: false,
     },
@@ -33,20 +33,15 @@ const User = seq.define('User', {
         type: Sequelize.INTEGER,
         allowNull: false,
     },
-    bio: {
-        type: Sequelize.STRING(300),
-    },
-    city: {
-        type: Sequelize.STRING(30),
-    },
-    occupation: {
-        type: Sequelize.STRING(30),
-    },
-    gender: {
+    gender: { // "M", "F", "GN", "O"
         type: Sequelize.STRING(1),
         allowNull: false,
     },
-    preferences: {
+    pronoun: {
+        type: Sequelize.STRING(30),
+        allowNull: false,
+    },
+    preferences: { // Array of gender values
         type: Sequelize.ARRAY(Sequelize.STRING),
         allowNull: false,
     },
@@ -58,18 +53,19 @@ const User = seq.define('User', {
         type: Sequelize.INTEGER,
         allowNull: false,
     },
-    distance: {
-        type: Sequelize.INTEGER,
+    bio: {
+        type: Sequelize.STRING(300),
+    },
+    city: { // Autofill option
+        type: Sequelize.STRING(30),
+    },
+    state: {
+        type: Sequelize.STRING(30),
+    },
+    occupation: {
+        type: Sequelize.STRING(30),
+    },
+    distance: { // I want someone this: "City", "State", or "Country"
+        type: Sequelize.ARRAY(Sequelize.STRING),
     },
 });
-
-/*
-    * 8 characters or more
-    * At least one special character !@#$%^&*()_+
-    * At least one capital letter
-    * At least one number
-    
-    Username unique
-    input validate everything here
-    email verification
-*/
