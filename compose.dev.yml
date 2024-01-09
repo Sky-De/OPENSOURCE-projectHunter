@@ -1,6 +1,6 @@
 services:
-  db:
-    container_name: postgres_container
+  postgres_dev:
+    container_name: postgres_dev
     image: postgres
     restart: always
     environment:
@@ -9,7 +9,17 @@ services:
       POSTGRES_DB: DATING_DB
     ports:
       - 5432:5432
-  backend:
+  postgres_test:
+    container_name: postgres_test
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: DATING_DB
+    ports:
+      - 5433:5433
+  backend_dev:
     build:
       context: backend
       dockerfile: Dockerfile.dev
@@ -17,6 +27,15 @@ services:
       - 4000:4000
     volumes:
       - ./backend:/app
+  # backend_test:
+  #   build:
+  #     context: backend
+  #     dockerfile: Dockerfile.dev
+  #   command: ["npm", "run", "test"]
+  #   ports:
+  #     - 5000:5000
+  #   volumes:
+  #     - ./backend:/app
   # react:
   #   build:
   #     context: frontend
