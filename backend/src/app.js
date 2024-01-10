@@ -18,6 +18,10 @@ app.use(express.json())
 
 app.use('/api', authRouter)
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+function makeServer() {
+  return app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`);
+  });
+}
+
+export { makeServer }
