@@ -1,5 +1,11 @@
 import { User } from '../models/user.js'
-import { validGenders } from '../shared.js'
+import { validGenders, validPasswordCharacters } from '../shared.js'
+import pkg from 'password-validator'
+const passwordValidator  = pkg
+// var passwordValidator = require('password-validator');
+
+
+let schema = new passwordValidator()
 
 export { createUser }
 
@@ -41,6 +47,18 @@ async function validate(data) {
 
     if (await User.findOne({where: {email: data.email}})) return { error: "Email is already taken", status: 400 } // Email must be unique
 
+    schema
+        .is().min(8)
+        .is().max(50)
+        .has().uppercase()
+        .has().lowercase()
+        .has().digits(2)
+        .has().not().spaces()
+        .has().symbols(1)
+
+    if (!schema.validate(data.password)) { // This means the password is not valid for AT LEAST ONE reason
+        return { error: `Password has failed due to incorrect: ${schema.validate(data.password, { list: true})}`, status: 400}
+    }
 
     // Make sure all required inputs exist and are notValid
 }
