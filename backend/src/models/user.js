@@ -58,9 +58,11 @@ const User = seq.define('User', {
     },
     city: { // Autofill option
         type: Sequelize.STRING(30),
+        allowNull: false,
     },
     state: {
         type: Sequelize.STRING(30),
+        allowNull: false,
     },
     occupation: {
         type: Sequelize.STRING(30),

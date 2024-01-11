@@ -30,6 +30,7 @@ async function createUser(req, res) {
             dob: new Date(data.dob),
             bio: data.bio,
             city: data.city,
+            state: data.state,
             occupation: data.occupation,
             distance: data.distance,
             age: data.age,
