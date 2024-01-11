@@ -27,24 +27,7 @@ services:
       - 4000:4000
     volumes:
       - ./backend:/app
-  # backend_test:
-  #   build:
-  #     context: backend
-  #     dockerfile: Dockerfile.dev
-  #   ports:
-  #     - 5000:5000
-  #   volumes:
-  #     - ./backend:/app
-  #   command: ["npm", "run", "test"]
-  # backend_test:
-  #   build:
-  #     context: backend
-  #     dockerfile: Dockerfile.dev
-  #   command: ["npm", "run", "test"]
-  #   ports:
-  #     - 5000:5000
-  #   volumes:
-  #     - ./backend:/app
+
   # react:
   #   build:
   #     context: frontend

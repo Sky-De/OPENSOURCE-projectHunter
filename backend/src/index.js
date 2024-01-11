@@ -1,3 +1,3 @@
-import { makeServer } from "./app";
+import { makeServer } from "./app.js";
 
 makeServer()
