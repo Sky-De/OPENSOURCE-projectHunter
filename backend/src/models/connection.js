@@ -1,4 +1,3 @@
-import { PostgreSqlContainer } from "@testcontainers/postgresql"
 import { Sequelize } from "sequelize";
 import 'dotenv/config.js';
 
@@ -17,10 +16,11 @@ if (process.env.NODE_ENV == 'dev'){
     });
 }
 else if (process.env.NODE_ENV == 'test'){
+    console.log("Using test DB")
     seq = new Sequelize({
         dialect: 'postgres',
         database: 'DATING_DB',
-        host: '172.18.0.2',
+        host: 'localhost',
         port: 5433,
         username: process.env.DB_USERNAME,
         password: process.env.DB_PASSWORD,

@@ -8,7 +8,7 @@ services:
       POSTGRES_PASSWORD: root
       POSTGRES_DB: DATING_DB
     ports:
-      - 5433:5433
+      - 5433:5432
   postgres_dev:
     container_name: postgres_dev
     image: postgres
@@ -20,13 +20,14 @@ services:
     ports:
       - 5432:5432
   backend:
+    container_name: backend
     build:
       context: backend
       dockerfile: Dockerfile.dev
     ports:
-      - 4000:4000
+      - 5000:4000
     volumes:
-      - ./backend:/app
+      - ./backend/src:/app/src
   # react:
   #   build:
   #     context: frontend

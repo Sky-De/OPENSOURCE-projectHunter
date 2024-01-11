@@ -1,4 +1,7 @@
 ### HOW TO RUN
+
+### Make sure you have Postman, Node, and Docker Installed!
+
 ##### 1. In backend directory, you must "npm install" ( this will change )
 ##### 2. In backend directory, create .env file with appropriate "PORT, JWTSECRET, DB_USERNAME, DB_PASSWORD, DB_PORT" environment variables
 * Docker Compose
@@ -18,9 +21,10 @@
 exec into PostgreSQL docker container: (UPDATES WEBPAGE)
     - docker exec -it postgres_container psql -U root test_db
 
-# PRODUCTION RUNS AT http://localhost/
-# DEVELOPMENT RUNS AT http://localhost:3000/
-## Backend endpoint/host is at http://localhost:4000/
+## FRONTEND PRODUCTION RUNS AT http://localhost/
+## FRONTEND DEVELOPMENT RUNS AT http://localhost:3000/
+## Backend endpoint/host is at http://localhost:5000/ (dev)
+## Backend endpoint/host is at http://localhost:4000/ (test)
 
 
 

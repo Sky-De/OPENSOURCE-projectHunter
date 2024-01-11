@@ -1,8 +1,8 @@
 import { User } from '../models/user.js'
 import { validGenders, validPasswordCharacters } from '../shared.js'
+import bcrypt from 'bcrypt'
 import pkg from 'password-validator'
 const passwordValidator  = pkg
-// var passwordValidator = require('password-validator');
 
 
 let schema = new passwordValidator()
@@ -17,26 +17,30 @@ async function createUser(req, res) {
         return res.status(notValid.status).send(notValid.error)
     }
     else {
-        const user = await User.create({
-            username: data.username,
-            password: data.password,
-            email: data.email,
-            firstName: data.firstName,
-            gender: data.gender,
-            minAge: data.minAge,
-            maxAge: data.maxAge,
-            preferences: data.preferences,
-            pronoun: data.pronoun,
-            dob: new Date(data.dob),
-            bio: data.bio,
-            city: data.city,
-            state: data.state,
-            occupation: data.occupation,
-            distance: data.distance,
-            age: data.age,
-        })
+        bcrypt.hash(data.password, 2, async function(err, hash) {
+            const user = await User.create({
+                username: data.username,
+                password: hash, // DO NOT SEND THIS!!!!
+                email: data.email,
+                firstName: data.firstName,
+                gender: data.gender,
+                minAge: data.minAge,
+                maxAge: data.maxAge,
+                preferences: data.preferences,
+                pronoun: data.pronoun,
+                dob: new Date(data.dob),
+                bio: data.bio,
+                city: data.city,
+                state: data.state,
+                occupation: data.occupation,
+                distance: data.distance,
+                age: data.age,
+            })
+    
+            const sanitizedUser = { ...user.toJSON(), password: undefined}
 
-        return res.json(user)
+            return res.json(sanitizedUser)
+        });
     }
 }
 
@@ -79,5 +83,4 @@ async function validate(data) {
         return { error: `Password has failed due to incorrect: ${schema.validate(data.password, { list: true})}`, status: 400}
     }
 
-    // Make sure all required inputs exist and are notValid
 }
