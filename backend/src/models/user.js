@@ -1,5 +1,5 @@
-import { seq } from "./connection.js";
 import { Sequelize } from "sequelize";
+import { seq } from "./connection.js";
 
 export { User }
 

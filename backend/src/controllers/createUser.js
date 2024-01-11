@@ -28,6 +28,7 @@ async function createUser(req, res) {
             distance: data.distance,
             age: data.age,
         })
+
         return res.json(user)
     }
 }
