@@ -7,7 +7,7 @@
   "scripts": {
     "test": "cross-env NODE_ENV=test vitest tests/auth.test.js",
     "dev": "cross-env NODE_ENV=dev nodemon -L src/index.js",
-    "start": "node src/index.js"
+    "start": "cross-env NODE_ENV=prod node src/index.js"
   },
   "author": "",
   "license": "ISC",
