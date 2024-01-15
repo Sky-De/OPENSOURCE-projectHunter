@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { Nav } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 import "./App.css";
 
 function App() {
@@ -71,24 +74,17 @@ function App() {
           </div>
           <br />
           <div className="mb-2">
-            <button className="login-form button-styled mr-1" onClick={getUser}>
-              Get User Info
-            </button>
-            <button className="login-form button-styled" onClick={createUser}>
-              Create a User
-            </button>
-            <br />
-          </div>
-          <div className="mb-4">
+            <div className="mb-1">
             <button className="login-form button-styled mr-1" onClick={login}>
               Login
             </button>
-            <button className="login-form button-styled" onClick={logout}>
-              Logout
-            </button>{" "}
             <br />
           </div>
-          <h2>{text}</h2>
+            <Link to='/register' onClick={createUser}>
+              <button className="login-form button-styled">Create a User</button>
+            </Link>
+            <br />
+          </div>
         </div>
       </div>
 

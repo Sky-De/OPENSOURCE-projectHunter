@@ -1,6 +1,16 @@
 // import Carousel from "react-bootstrap/Carousel";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function SimpleSlider() {
+  const [p,setP]=useState('password');
+  function myFunction() {
+    if (p === "password") {
+      setP('text');
+    } else {
+     setP('password');
+    }
+  }
   return (
     <div className="simple-slider">
       <div className="carousel-container d-flex justify-content-center">
@@ -52,9 +62,10 @@ function SimpleSlider() {
                   <br />
                   <input
                     className="register-password mb-2"
-                    type="text"
+                    type={p}
                     placeholder="Password"
                   />
+                  <input type="checkbox" onClick={myFunction}/>Show Password
                   <br />
                   <label for="email">Email</label>
                   <br />
@@ -62,9 +73,13 @@ function SimpleSlider() {
                     className="register-email mb-2"
                     type="text"
                     placeholder="Email"
-                  />
+                  /> 
+                  </div>   
+                  <br />
+                  <p>already have an account?
+                    <Link> click here.</Link></p>
+                  
                 </div>
-              </div>
             </div>
             {/* carousel slide 2 */}
             <div class="carousel-item">
@@ -125,6 +140,29 @@ function SimpleSlider() {
                     </label>
                   </div>
                   <br />
+                  <div class="form-check mt-2 mr-2">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="flexCheckDefault"
+                    />
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Non-Binary
+                    </label>
+                  </div>
+                  <div class="form-check mt-2 mr-2">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="flexCheckDefault"
+                    />
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Other
+                    </label>
+                  </div>
+                  <br />
                   <label className="mt-2" for="age-preference">
                     Age Preference
                   </label>
@@ -179,5 +217,6 @@ function SimpleSlider() {
     </div>
   );
 }
+
 
 export default SimpleSlider;
