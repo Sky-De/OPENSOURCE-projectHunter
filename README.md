@@ -10,7 +10,7 @@
 ### For running backend tests, do the above, but you must also:
 #### <code>cd backend</code>
 #### <code>npm i</code>
-#### <code>npm run test</code>
+## <code>npm run test</code>
 
 
 exec into PostgreSQL docker container:
