@@ -6,10 +6,11 @@ import {
   Routes as Switch,
   Route,
 } from "react-router-dom";
+import { NavbarBootstrap } from "./components/NavbarBS";
 import App from "./App";
-import Register from "./pages/Register";
+import Home from "./pages/Home";
+import SignUp from "./pages/SignUp";
 import EmailSent from "./pages/EmailSent";
-import { NavbarBootstrap } from "./components/NavBarBS";
 
 const root = createRoot(document.getElementById("root"));
 root.render(
@@ -18,8 +19,9 @@ root.render(
       <NavbarBootstrap />
       <Switch>
         <Route exact path="/" element={<App />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/email/:username" element={<EmailSent />} />
+        <Route path="/home" element={<Home />} />
       </Switch>
     </Router>
   </React.StrictMode>

@@ -1,8 +1,8 @@
 import React from "react";
-import "../css/Register.css";
+import "../css/SignUp.css";
 import SimpleSlider from "../components/SimpleSlider";
 
-const register = () => {
+const SignUp = () => {
   return (
     <div className="register">
       <div className="container">
@@ -15,4 +15,4 @@ const register = () => {
   );
 };
 
-export default register;
+export default SignUp;
