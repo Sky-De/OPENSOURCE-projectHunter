@@ -39,15 +39,40 @@ describe('GET /users (getUser)', function() {
         
         expect(statusCode).toBe(200)
 
-        expect(body).toMatchObject({username: 'testuser2', email: 'testuser2@gmail.com'})
+        expect(body).toMatchObject({username: 'testuser2', email: 'testuser2@gmail.com', firstName: 'John'})
     })
 
     test('should return bad status code and message if token is missing', async () => {
-
+        const {statusCode, text} = 
+            await request(app)
+                .get(endpoint)
+                // .set("Authorization", `Bearer ${token}`)
+        
+        expect(statusCode).toBe(400)
+        expect(text).toBe('token is missing')
+        
     })
 
     test('should return bad status code and message if token is invalid', async () => { // May have to console log the message to see what it is
+        const {body, statusCode} = 
+            await request(app)
+                .get(endpoint)
+                .set("Authorization", `Bearer ${token}2`)
+        
+        expect(statusCode).toBe(401)
+        // console.log(body)
+        expect(body.error.message).toBe('invalid signature')
+    })
 
+    test('should return bad status code and message if token is invalid malformed', async () => { // May have to console log the message to see what it is
+        const {body, statusCode} = 
+            await request(app)
+                .get(endpoint)
+                .set("Authorization", `Bearer abc`)
+        
+        expect(statusCode).toBe(401)
+        // console.log(body)
+        expect(body.error.message).toBe('jwt malformed')
     })
 
 })
@@ -70,11 +95,29 @@ describe('PUT /users (login)', function() {
 
 
     test('should return bad status code and reason if username does not exist', async () => {
-
+        const {body, text, statusCode} = 
+            await request(app)
+                .put(endpoint)
+                .send({
+                    username: 'testuser',
+                    password: 'Password12!',
+                })
+    
+        expect(statusCode).toBe(400)
+        expect(text).toBe("Incorrect username or password")
     })
 
     test('should return bad status code and reason if password is incorrect', async () => {
+        const {body, text, statusCode} = 
+        await request(app)
+            .put(endpoint)
+            .send({
+                username: 'testuser1',
+                password: 'Password1!',
+            })
 
+        expect(statusCode).toBe(400)
+        expect(text).toBe("Incorrect username or password")
     })
 })
 
