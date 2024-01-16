@@ -8,7 +8,9 @@
 ## <code>docker compose -f compose.dev.yml up --build -d</code>
 
 ### For running backend tests, do the above, but you must also:
-#### cd into backend, run npm install, then run "npm run test"
+#### <code>cd backend</code>
+#### <code>npm i</code>
+#### <code>npm run test</code>
 
 
 exec into PostgreSQL docker container:
