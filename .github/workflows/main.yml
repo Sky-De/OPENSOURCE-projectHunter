@@ -11,16 +11,14 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-        - name: Checkout code
-          uses: actions/checkout@v2
-
-        - name: Set up Node.js
+        - uses: actions/checkout@v4
+        - name: Set up Node.js v19
           uses: actions/setup-node@v3
           with:
             node-version: 19
         
         - name: Install dependencies
-          run: npm install
+          run: npm ci
 
         - name: Set up environment variables
           run: echo "$(cat secrets.env)" >> $GITHUB_ENV
