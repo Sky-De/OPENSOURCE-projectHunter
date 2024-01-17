@@ -1,0 +1,24 @@
+minikube start
+kubectl create secret generic pgpassword --from-literal PGPASSWORD=anime_lovers_uwu.exe
+
+kubectl delete job ingress-nginx-admission-create -n ingress-nginx
+kubectl delete job ingress-nginx-admission-patch -n ingress-nginx
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.0/deploy/static/provider/cloud/deploy.yaml
+kubectl get pods -n ingress-nginx
+
+
+
+"ImplementationSpecific" instead of "Prefix" in ingress-service.yml
+
+
+kubectl exec -it debug-pod -- /bin/sh
+apk add --update curl
+
+kubectl logs podname
+
+kubectl get all -n ingress-nginx
+
+minikube addons enable ingress
+
+Remove-item alias:curl
