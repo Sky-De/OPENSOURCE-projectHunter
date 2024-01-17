@@ -38,21 +38,16 @@ jobs:
           run: npm ci
           working-directory: projectHunter/backend
 
-        # - name: Set up environment variables
-        #   run: echo "" >> $GITHUB_ENV
-        #   working-directory: projectHunter/backend
-          
-
         - name: Run tests
           run: npm run test
           working-directory: projectHunter/backend
           env:
             PORT: 4000
-            JWTSECRET: "secret"
-            DB_USERNAME: "root"
-            DB_PASSWORD: "root"
-            DB_HOST: "localhost"
-            DB_DB: "DATING_DB"
+            JWTSECRET: secret
+            DB_USERNAME: root
+            DB_PASSWORD: root
+            DB_HOST: localhost
+            DB_DB: DATING_DB
             NODE_ENV: test
 
     deploy-backend:

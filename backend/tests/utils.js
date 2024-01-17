@@ -9,7 +9,8 @@ export {
 }
 
 async function setupDatabase() {
-   
+    seq.sync()
+
     const users = await User.bulkCreate([
         {
             "username": "testuser1",
