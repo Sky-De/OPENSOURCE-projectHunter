@@ -49,10 +49,11 @@ function App() {
 
   return (
     <div className="App">
-      <div className="split left">
-        <div className="centered">
-          <h1 className="mb-4">Login</h1>
-          <div>
+      <div id="login-box">
+        <h1 id="login-heading">Log In</h1>
+
+        <div id="login-input">
+          <div className="d-flex align-items-center">
             <i className="fa-solid fa-user mr-2"></i>
             <input
               className="mb-2"
@@ -62,7 +63,8 @@ function App() {
                 setUsername(e.target.value);
               }}
             />
-            <br />
+          </div>
+          <div className="d-flex align-items-center">
             <i className="fa-solid fa-lock mr-2"></i>
             <input
               type="password"
@@ -72,31 +74,65 @@ function App() {
               }}
             />
           </div>
-          <br />
-          <div className="mb-2">
-            <div className="mb-1">
-            <button className="login-form button-styled mr-1" onClick={login}>
-              Login
-            </button>
-            <br />
-          </div>
-            <Link to='/register' onClick={createUser}>
-              <button className="login-form button-styled">Create a User</button>
-            </Link>
-            <br />
-          </div>
         </div>
-      </div>
 
-      <div className="split right d-none d-md-block">
-        <div className="centered">
-          <img
-            src={process.env.PUBLIC_URL + "/dating2.svg"}
-            alt="Couple dating SVG"
-            width="400"
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="flexCheckDefault"
           />
+          <label
+            id="remember-me"
+            class="form-check-label"
+            for="flexCheckDefault"
+          >
+            Remember me
+          </label>
         </div>
+
+        <div className="mb-3">
+          <button id="login-form-btn" className="mr-1" onClick={login}>
+            Log In
+          </button>
+          <br />
+        </div>
+
+        <div id="alt-login-container">
+          <p id="alt-login">
+            <span>Or login with</span>
+          </p>
+        </div>
+
+        <div className="d-flex justify-content-center mb-3">
+          <div id="circle" className="mr-3">
+            <a href="/">
+              <i class="fa-brands fa-google mt-1"></i>
+            </a>
+          </div>
+          <div id="circle">
+            <a href="/">
+              <i class="fa-brands fa-facebook mt-1"></i>
+            </a>
+          </div>
+          <div id="circle" className="ml-3">
+            <a href="/">
+              <i class="fa-brands fa-twitter mt-1"></i>
+            </a>
+          </div>
+        </div>
+
+        <p id="sign-up" className="d-flex justify-content-center">
+          <span>
+            Not a member?{" "}
+            <Link id="sign-up" to="/register" onClick={createUser}>
+              Sign up now
+            </Link>
+          </span>
+        </p>
       </div>
+      <div id="spacer"></div>
     </div>
   );
 }

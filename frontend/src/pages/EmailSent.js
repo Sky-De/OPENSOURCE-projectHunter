@@ -1,10 +1,10 @@
 import React from "react";
-import {useParams} from 'react-router-dom';
-import "../css/Email.css";
+import { useParams } from "react-router-dom";
+import "../css/EmailSent.css";
 import SimpleSlider from "../components/SimpleSlider";
 
 const Email = () => {
-  const {username} = useParams();
+  const { username } = useParams();
 
   return (
     <div className="email-header">

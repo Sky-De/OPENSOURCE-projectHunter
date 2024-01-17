@@ -1,0 +1,23 @@
+@import "../index.css";
+
+#navbar-custom {
+  background-color: var(--background);
+}
+#navbar-brand {
+  color: var(--primary);
+  font-weight: 600;
+}
+#nav-link,
+#nav-link-special {
+  color: var(--white);
+}
+#nav-link-special {
+  padding: 6px 14px;
+  background-color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 5px;
+  transition: all 100ms ease-in-out;
+}
+#nav-link-special:hover {
+  background-color: transparent;
+}
