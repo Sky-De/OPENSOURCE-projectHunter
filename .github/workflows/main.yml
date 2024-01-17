@@ -28,7 +28,7 @@ jobs:
           working-directory: projectHunter/backend
 
         - name: Set up environment variables
-          run: echo "$(cat secrets.env)" >> $GITHUB_ENV
+          run: echo "${{ secrets.SECRETS_ENV_CONTENT }}" >> $GITHUB_ENV
           working-directory: projectHunter/backend
 
         - name: Run tests
