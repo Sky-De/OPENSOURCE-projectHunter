@@ -10,6 +10,17 @@ jobs:
     build-backend:
         runs-on: ubuntu-latest
 
+        services:
+          postgres:
+            image: postgres:latest
+            env:
+              POSTGRES_DB: DATING_DB
+              POSTGRES_USER: root
+              POSTGRES_PASSWORD: root
+            ports:
+              - 5433:5432
+            options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
         steps:
         - uses: actions/checkout@v4
           with:
@@ -36,12 +47,13 @@ jobs:
           run: npm run test
           working-directory: projectHunter/backend
           env:
-            PORT: "${{secrets.PORT}}"
-            JWTSECRET: "${{secrets.JWTSECRET}}"
-            DB_USERNAME: "${{secrets.DB_USERNAME}}"
-            DB_PASSWORD: "${{secrets.DB_PASSWORD}}"
-            DB_HOST: "${{secrets.DB_HOST}}"
-            DB_DB: "${{secrets.DB_DB}}"
+            PORT: 4000
+            JWTSECRET: "secret"
+            DB_USERNAME: "root"
+            DB_PASSWORD: "root"
+            DB_HOST: "localhost"
+            DB_DB: "DATING_DB"
+            NODE_ENV: test
 
     deploy-backend:
         runs-on: ubuntu-latest
