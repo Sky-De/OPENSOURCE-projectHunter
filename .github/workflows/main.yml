@@ -13,7 +13,11 @@ jobs:
         steps:
         - uses: actions/checkout@v4
           with:
-            path: backend
+            path: projectHunter
+
+        - name: Navigate to backend directory
+          run: cd projectHunter/backend
+
         - name: Set up Node.js v19
           uses: actions/setup-node@v3
           with:
@@ -21,15 +25,15 @@ jobs:
         
         - name: Install dependencies
           run: npm ci
-          working-directory: backend
+          working-directory: projectHunter/backend
 
         - name: Set up environment variables
           run: echo "$(cat secrets.env)" >> $GITHUB_ENV
-          working-directory: backend
+          working-directory: projectHunter/backend
 
         - name: Run tests
           run: npm run test
-          working-directory: backend
+          working-directory: projectHunter/backend
 
     deploy-backend:
         runs-on: ubuntu-latest
@@ -50,7 +54,7 @@ jobs:
             docker buildx create --use
             docker buildx build --platform linux/amd64,linux/arm64 -t zirolet/multi-backend:latest -t zirolet/multi-backend:$GITHUB_SHA .
             docker push zirolet/multi-backend
-          working-directory: backend
+          working-directory: projectHunter/backend
           env:
             DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
             DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
