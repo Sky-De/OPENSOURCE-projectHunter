@@ -1,36 +1,24 @@
-### HOW TO RUN
+## HOW TO RUN
 
-### Make sure you have Postman, Node, and Docker Installed!
+### Backend needs Postman, Node, and Docker Installed!
+### Frontend needs only Docker!
 
-##### 1. In backend directory, you must "npm install" ( this will change )
-##### 2. In backend directory, create .env file with appropriate "PORT, JWTSECRET, DB_USERNAME, DB_PASSWORD, DB_PORT" environment variables
-* Docker Compose
-    * Production: (Creates NGINX web server to serve react-build)     *DOES NOT AUTOMATICALLY UPDATE WEBPAGE WHEN CHANGING REACT! MUST REBUILD!!!*
-        - (to run) docker compose -f compose.prod.yml up --build -d
-        - (to stop) docker compose -f compose.prod.yml down
-    * Development: (UPDATES WEBPAGE)
-        - (to run) docker compose -f compose.dev.yml up --build -d
-        - (to stop) docker compose -f compose.dev.yml down
-* Manually
-    * Development:
-        - Open two terminals, one you must "cd frontend" and the other, "cd backend"
-        - In each you first run "npm install"
-        - In each, you run "npm start
-        - (PostgreSQL) Must setup server on your own and connect manually
+#### 1. In backend directory, create .env file with appropriate "PORT, JWTSECRET, DB_USERNAME, DB_PASSWORD, DB_PORT" environment variables, refer to pinned comment in "important-info" channel in discord to know how the file should look
+#### 2. In parent directory with Docker Desktop already running, run this command in terminal: 
+## <code>docker compose --build -d</code>
 
-exec into PostgreSQL docker container: (UPDATES WEBPAGE)
+### For running backend tests, do the above, but you must also:
+#### <code>cd backend</code>
+#### <code>npm i</code>
+## <code>npm run test</code>
+
+
+exec into PostgreSQL docker container:
     - docker exec -it postgres_container psql -U root test_db
 
-## FRONTEND PRODUCTION RUNS AT http://localhost/
-## FRONTEND DEVELOPMENT RUNS AT http://localhost:3000/
-## Backend endpoint/host is at http://localhost:5000/ (dev)
-## Backend endpoint/host is at http://localhost:4000/ (test)
+## Frontend runs at: http://localhost/ (production)
+## Frontend runs at: http://localhost:3000/ (dev)
 
-
-
-Development environment:\
-    1. Frontend uses webpack and allows for hot reloading due to the environment variables in the docker-compose service (Although it is slower)\
-    2. Backend uses nodemon for warm reloading
-
-Productiont environment:\
-    - Does not allow any reloading, so you must rebuild the Dockerfile Images on every code change!
+## Backend runs at: http://localhost/ (production)
+## Backend runs at: http://localhost:5000/ (dev)
+## Backend runs at: http://localhost:4000/ (test environment)
