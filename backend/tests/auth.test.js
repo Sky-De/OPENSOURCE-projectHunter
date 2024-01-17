@@ -10,11 +10,8 @@ import { makeServer } from '../src/app'
 const app = makeServer()
 const endpoint = '/api/user'
 
-before(async () => {
-    await seq.sync({force: true})
-})
-
 beforeAll(async () => {
+    await seq.sync({force: true})
     await setupDatabase()
 })
 
