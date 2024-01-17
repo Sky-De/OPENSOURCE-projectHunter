@@ -1,12 +1,18 @@
 import  request from 'supertest'
-import { describe, test, expect, beforeAll, afterAll, beforeEach} from 'vitest'
+import { describe, test, expect, beforeAll, afterAll, beforeEach, before} from 'vitest'
 import { setupDatabase, teardownDatabase } from './utils'
+import { seq } from '../src/models/connection'
+import { User } from '../src/models/user'
 
 import { makeServer } from '../src/app'
 
 
 const app = makeServer()
 const endpoint = '/api/user'
+
+before(async () => {
+    await seq.sync({force: true})
+})
 
 beforeAll(async () => {
     await setupDatabase()
