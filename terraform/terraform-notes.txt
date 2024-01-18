@@ -1,0 +1,2 @@
+1. Creating a vpc will create a default Route Table, Network ACL, and Security Group
+2. Created S3 bucket specifically for the terraform state

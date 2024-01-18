@@ -12,10 +12,10 @@
 #### <code>npm i</code>
 ## <code>npm run test</code>
 
-
-## <code>npx prettier . --write</code>
+### [in backend directory] Prettier Formatter
+## <code>npm run pretty</code>
 ### [in backend directory] ESLint Check
-## <code>./node_modules/.bin/eslint .</code>
+## <code>npm run lint</code>
 
 
 exec into PostgreSQL docker container:

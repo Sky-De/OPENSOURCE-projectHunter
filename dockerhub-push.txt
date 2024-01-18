@@ -1,6 +1,0 @@
-cd frontend
-docker build -t zirolet/multi-frontend -f Dockerfile .
-docker push zirolet/multi-frontend
-cd ../backend
-docker build -t zirolet/multi-backend -f Dockerfile.prod .
-docker push zirolet/multi-backend
