@@ -13,6 +13,11 @@
 ## <code>npm run test</code>
 
 
+## <code>npx prettier . --write</code>
+### [in backend directory] ESLint Check
+## <code>./node_modules/.bin/eslint .</code>
+
+
 exec into PostgreSQL docker container:
     - docker exec -it postgres_container psql -U root test_db
 
