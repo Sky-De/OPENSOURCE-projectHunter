@@ -11,7 +11,7 @@ async function updateUser(req, res) {
 
   const params = {
     Bucket: 'tindeggle-profile-pics',
-    Key: 'dumbfounded-yusuke.jpg',
+    Key: 'user/' + file.originalname,
     Body: file.buffer,
   };
 
