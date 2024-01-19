@@ -9,31 +9,40 @@ terraform {
 
 provider "aws" {
   region = "us-east-1" # Change to your desired region
+
 }
 
 # S3
+resource "aws_s3_bucket" "profile_pic_bucket" {
+  bucket = "tindeggle-profile-pics"
+
+  tags = {
+    Name = "Profile Pics"
+  }
+}
+
 resource "aws_s3_bucket" "terraform_state_bucket" {
   bucket = "tindeggle-terraform-state-bucket"
 
   tags = {
-    Name = "Terraform State S3"
+    Name        = "Terraform State S3"
     Environment = "Dev"
   }
 }
 
 terraform {
   backend "s3" {
-    bucket = "tindeggle-terraform-state-bucket"
-    key = "terraform.tfstate"
-    region = "us-east-1"
+    bucket  = "tindeggle-terraform-state-bucket"
+    key     = "terraform.tfstate"
+    region  = "us-east-1"
     encrypt = true
   }
 }
 
 # VPC
 resource "aws_vpc" "eks_vpc" {
-  cidr_block = "10.0.0.0/16"
-  enable_dns_support = true
+  cidr_block           = "10.0.0.0/16"
+  enable_dns_support   = true
   enable_dns_hostnames = true
 
   tags = {
