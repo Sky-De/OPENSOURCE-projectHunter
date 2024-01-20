@@ -33,6 +33,7 @@ async function createUser(req, res) {
         occupation: data.occupation,
         distance: data.distance,
         age: data.age,
+        pictures: [],
       });
 
       const sanitizedUser = { ...user.toJSON(), password: undefined };

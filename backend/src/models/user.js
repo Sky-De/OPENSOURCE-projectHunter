@@ -56,9 +56,6 @@ const User = seq.define('User', {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
-  bio: {
-    type: Sequelize.STRING(300),
-  },
   city: {
     // Autofill option
     type: Sequelize.STRING(30),
@@ -71,9 +68,18 @@ const User = seq.define('User', {
   occupation: {
     type: Sequelize.STRING(30),
   },
+  bio: {
+    type: Sequelize.STRING(300),
+  },
   distance: {
     // I want someone this: "City", "State", or "Country"
     type: Sequelize.ARRAY(Sequelize.STRING),
+  },
+  pictures: {
+    // This will be something like: ["username/original-name1.png", "username/original-name2.jpg", "username/original-name3.jpeg"]
+    // We must make sure that this array does not get longer than 6 photos long
+    type: Sequelize.ARRAY(Sequelize.STRING),
+    defaultValue: [],
   },
 });
 

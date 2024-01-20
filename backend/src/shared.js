@@ -10,6 +10,7 @@ export {
   validPasswordCharacters,
   s3,
   upload,
+  getToken,
 };
 
 const jwtSecret = process.env.JWTSECRET;
@@ -18,8 +19,8 @@ const validPasswordCharacters = ['!', '@', '#'];
 const expirationTime = '1h'; // '1h', '1m', '1s'
 
 AWS.config.update({
-  accessKeyId: 'AKIA5FTZDLDPY5362ASX',
-  secretAccessKey: '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',
+  accessKeyId: process.env.AWS_ACCESS,
+  secretAccessKey: process.env.AWS_SECRET,
   region: 'us-east-1',
 });
 
@@ -27,3 +28,11 @@ const s3 = new AWS.S3();
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
+
+function getToken(req) {
+  const bearer = req.get('Authorization');
+  if (!bearer) return { error: 'token is missing', status: 400 };
+  const token = bearer.split('Bearer ')[1];
+  if (!token) return { error: 'token is missing', status: 400 };
+  return { token: token };
+}

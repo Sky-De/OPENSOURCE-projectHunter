@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { jwtSecret } from '../shared.js';
+import { jwtSecret, getToken } from '../shared.js';
 
 export { getUser };
 
@@ -16,12 +16,4 @@ async function getUser(req, res) {
       return res.json(santizedDecoded);
     });
   }
-}
-
-function getToken(req) {
-  const bearer = req.get('Authorization');
-  if (!bearer) return { error: 'token is missing', status: 400 };
-  const token = bearer.split('Bearer ')[1];
-  if (!token) return { error: 'token is missing', status: 400 };
-  return { token: token };
 }
