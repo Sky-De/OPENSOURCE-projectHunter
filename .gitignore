@@ -1,1 +1,11 @@
 .env
+secrets.env
+texts
+
+
+# Terraform Stuff
+.terraform
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.backup
+*.tfplan

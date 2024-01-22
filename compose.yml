@@ -39,6 +39,8 @@ services:
       - 5000:4000
     volumes:
       - ./backend/src:/app/src
+    depends_on:
+      - postgres_dev
   frontend:
     container_name: frontend
     build:
