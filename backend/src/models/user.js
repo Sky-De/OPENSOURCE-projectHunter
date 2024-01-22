@@ -14,11 +14,11 @@ const User = seq.define('User', {
         allowNull: false,
     },
     password: {
-        type: Sequelize.STRING(300),
+        type: Sequelize.STRING(30),
         allowNull: false,
     },
     email: { // Email verification
-        type: Sequelize.STRING(30),
+        type: Sequelize.STRING(50),
         allowNull: false,
     },
     firstName: {
