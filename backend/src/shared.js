@@ -8,7 +8,7 @@ export {
   validGenders,
   expirationTime,
   validPasswordCharacters,
-  emailParams
+  emailParams,
   s3,
   upload,
   getToken,
