@@ -16,7 +16,7 @@ async function getUser(req, res) {
       const sanitizedUser = { ...user, password: undefined};
     //   const santizedDecoded = { ...decoded.user, password: undefined };
 
-      return res.json(sanitizedUser);
+      return res.json(user);
     });
   }
 }

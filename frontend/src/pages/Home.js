@@ -8,15 +8,16 @@ const Home = () => {
   
   useEffect(() => {
     AWS.config.update({
-      accessKeyId: 'AKIA5FTZDLDPYRINBTE5',
-      secretAccessKey: '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',
+      accessKeyId: thinggoeshere,
+      secretAccessKey: thinggoeshere,
       region: 'us-east-1',
     })
 
     const s3 = new AWS.S3();
 
-    /*This is where the work needs to get done
-      1. Send a get request here to fetch the user information, and then the "Key" key in the params object needs to get the corresponding image names
+    /*
+      This is where the work needs to get done
+        1. Send a get request here to fetch the user information, and then the "Key" key in the params object needs to get the corresponding image names
     */
     const params = {
       Bucket: 'tindeggle-profile-pics',
