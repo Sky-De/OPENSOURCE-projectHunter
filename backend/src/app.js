@@ -2,6 +2,9 @@ import cors from 'cors';
 import express from 'express';
 import { authRouter } from './routes/auth.js';
 import 'dotenv/config.js';
+import { seq } from './models/connection.js';
+import { User } from './models/user.js';
+import { Invite } from './models/invite.js';
 
 const port = process.env.PORT;
 
@@ -18,7 +21,8 @@ app.use(express.json());
 
 app.use('/api', authRouter);
 
-function makeServer() {
+async function makeServer() {
+  await seq.sync();
   return app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
   });

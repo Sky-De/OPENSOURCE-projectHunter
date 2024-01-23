@@ -82,5 +82,3 @@ const User = seq.define('User', {
     defaultValue: [],
   },
 });
-
-await seq.sync();
