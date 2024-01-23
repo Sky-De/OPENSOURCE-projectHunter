@@ -8,10 +8,6 @@ const Invite = seq.define('Invite', {
         type: Sequelize.STRING(30),
         allowNull: false,
     },
-    password: {
-        type: Sequelize.STRING(30),
-        allowNull: false,
-    },
     email: { // Email verification 
         type: Sequelize.STRING(50),
         allowNull: false,
@@ -22,6 +18,6 @@ const Invite = seq.define('Invite', {
     },
     expiration: {
         type: Sequelize.DATE,
-        allowNull: false,
+        // allowNull: false,
     },
 });

@@ -1,35 +1,48 @@
 import { Invite } from "../models/invite.js";
 import { User } from '../models/user.js';
 import { sendInvite } from "../utils/sendMail.js";
+import randomstring from "randomstring"
 
 export { createInvite };
 
 
 async function createInvite(req, res) {
     const data = req.body;
-
-    const notValid = await validate(data); // Input Validation
-    if (notValid) {
-      return res.status(notValid.status).send(notValid.error);
-    } 
+    if (await Invite.findOne({ where: { email: data.email } })) {
+        console.log("Seems you've already tried signing up. Sending a new invite...")
+        return resendInvite(req, res);
+    }
+    
     else {
-        const key = await generateKey(data.username)
-        const invite = await Invite.create({
-        username: data.username,
-        email: data.email,
-        invite_key: key,
-        // expiration: 
-        })
-        
-        if (invite) {
-            const result = sendInvite(date.email, htmlMessage)
-            if ('err' in result) return res.status(400).send(result.err);
-            return res.status(201).send('Invite sent.')
-        }
+        const notValid = await validate(data); // Input Validation
+        if (notValid) {
+        return res.status(notValid.status).send(notValid.error);
+        } 
         else {
-            return res.status(400).send('error') 
+                const key = await generateKey()
+                const invite = await Invite.create({
+                username: data.username,
+                email: data.email,
+                invite_key: key,
+                // expiration: 
+                })
+            
+            if (invite) {
+                try {
+                    sendInvite(data.email, key);
+                    console.log("HOORAY!")
+                    return res.status(201).send('Invite sent.');
+                } catch (err) {
+                    console.log("OOPS!")
+                    return res.status(400).send(err);
+                }
+            }
+            else {
+                console.log("no invite?")
+                return res.status(400).send('error') 
+            }
+            
         }
-        
     }   
 }
 
@@ -47,12 +60,27 @@ async function validate(data) {
         return { error: 'Email is already taken', status: 400 }; // Email must be unique
 }
 
-async function generateKey(username) {
-    // temporary, will fix later
-    return username+"randstring123"
+async function resendInvite(req, res) {
+    const data = req.body;
+    const invite = await Invite.findOne({ where: { email: data.email } });
+    const new_key = generateKey();
+    // console.log(new_key)
+    invite.invite_key = new_key
+    await invite.save();
+
+    try {
+        sendInvite(data.email, new_key);
+        console.log("HOORAY!")
+        return res.status(200).send('New invite sent.');
+    } catch (err) {
+        console.log("OOPS!")
+        return res.status(400).send(err);
+    }
+
 }
 
-const htmlMessage = `
-    <p>HTML version of the message</p>
-    <p>And this is a <a href=https://youtu.be/xvFZjo5PgG0?si=aVghG-V-uRUzYHJE>link</a>
-`;
+function generateKey() {
+    return randomstring.generate(30);
+}
+
+
