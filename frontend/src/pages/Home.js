@@ -8,8 +8,8 @@ const Home = () => {
   
   useEffect(() => {
     AWS.config.update({
-      accessKeyId: thinggoeshere,
-      secretAccessKey: thinggoeshere,
+      accessKeyId: envvariable,
+      secretAccessKey: envvariable,
       region: 'us-east-1',
     })
 
@@ -21,7 +21,7 @@ const Home = () => {
     */
     const params = {
       Bucket: 'tindeggle-profile-pics',
-      Key: 'testuser1/ramen.jpeg'
+      Key: 'default.png'
     };
 
     s3.getSignedUrl('getObject', params, (err, url) => {

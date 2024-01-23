@@ -19,17 +19,6 @@ services:
       POSTGRES_DB: DATING_DB
     ports:
       - 5432:5432
-  nginx:
-    container_name: nginx
-    depends_on:
-      - backend
-      - frontend
-    restart: always
-    build:
-      context: nginx
-      dockerfile: Dockerfile.dev
-    ports:
-      - 80:80
   backend:
     container_name: backend
     build:
@@ -41,16 +30,27 @@ services:
       - ./backend/src:/app/src
     depends_on:
       - postgres_dev
-  frontend:
-    container_name: frontend
-    build:
-      context: frontend
-      dockerfile: Dockerfile.dev
-    environment:
-      - WDS_SOCKET_HOST=127.0.0.1
-      - CHOKIDAR_USEPOLLING=true
-      - WATCHPACK_POLLING=true
-    ports:
-      - 3000:3000
-    volumes:
-      - ./frontend/src:/app/src
+  # nginx:
+  #   container_name: nginx
+  #   depends_on:
+  #     - backend
+  #     - frontend
+  #   restart: always
+  #   build:
+  #     context: nginx
+  #     dockerfile: Dockerfile.dev
+  #   ports:
+  #     - 80:80
+  # frontend:
+  #   container_name: frontend
+  #   build:
+  #     context: frontend
+  #     dockerfile: Dockerfile.dev
+  #   environment:
+  #     - WDS_SOCKET_HOST=127.0.0.1
+  #     - CHOKIDAR_USEPOLLING=true
+  #     - WATCHPACK_POLLING=true
+  #   ports:
+  #     - 3000:3000
+  #   volumes:
+  #     - ./frontend/src:/app/src

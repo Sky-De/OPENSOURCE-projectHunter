@@ -39,7 +39,10 @@ async function addPicture(req, res) {
     console.log('File uploaded successfully: ', data.location);
 
     console.log(user_obj);
-    user_obj.pictures.push(`${user.username}/${file.originalname}`);
+    if (user_obj.pictures[0] != 'default.png')
+      user_obj.pictures.push(`${user.username}/${file.originalname}`);
+    else
+      user_obj.pictures[0] = `${user.username}/${file.originalname}`
 
     await User.update(
       { pictures: user_obj.pictures },

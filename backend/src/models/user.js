@@ -79,6 +79,6 @@ const User = seq.define('User', {
     // This will be something like: ["username/original-name1.png", "username/original-name2.jpg", "username/original-name3.jpeg"]
     // We must make sure that this array does not get longer than 6 photos long
     type: Sequelize.ARRAY(Sequelize.STRING),
-    defaultValue: [],
+    defaultValue: ['default.png'],
   },
 });

@@ -15,7 +15,8 @@ const authRouter = Router();
 authRouter.get('/user', getUser);
 authRouter.post('/user', createUser);
 authRouter.patch('/user', updateUser);
-authRouter.put('/user', login)
+authRouter.put('/user', login);
+// authRouter.get('/user/invite/:ikey', getInvite);
 authRouter.post('/user/invite', createInvite);
 
 authRouter.post('/user/pic', upload.single('file'), addPicture);

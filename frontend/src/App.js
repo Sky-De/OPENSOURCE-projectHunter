@@ -5,7 +5,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import "./App.css";
 
 function App() {
-  let userEndpoint = "http://localhost:4000/user";
+  let userEndpoint = "http://localhost:5000";
 
   const [text, setText] = useState("Placeholder");
   const [username, setUsername] = useState("");
@@ -18,7 +18,7 @@ function App() {
   }
 
   async function createUser() {
-    const response = await fetch(userEndpoint, {
+    const response = await fetch(userEndpoint + '/user', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,7 +30,7 @@ function App() {
   }
 
   async function login() {
-    const response = await fetch(userEndpoint, {
+    const response = await fetch(userEndpoint + '/user', {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -39,12 +39,6 @@ function App() {
     });
     const data = await response.json();
     setText(`Welcome ${data.username}`);
-  }
-
-  async function logout() {
-    const response = await fetch(userEndpoint, { method: "DELETE" });
-    const data = await response.json();
-    setText(data.message);
   }
 
   return (
