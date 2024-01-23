@@ -26,4 +26,4 @@ const Invite = seq.define('Invite', {
     },
 });
 
-seq.sync()
+await seq.sync()
