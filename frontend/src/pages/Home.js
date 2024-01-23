@@ -8,8 +8,8 @@ const Home = () => {
   
   useEffect(() => {
     AWS.config.update({
-      accessKeyId: 'AKIA5FTZDLDPYRINBTE5',
-      secretAccessKey: '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',
+      accessKeyId: thinggoeshere,
+      secretAccessKey: thinggoeshere,
       region: 'us-east-1',
     })
 
