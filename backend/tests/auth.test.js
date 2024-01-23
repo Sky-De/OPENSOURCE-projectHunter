@@ -12,11 +12,11 @@ import { seq } from '../src/models/connection';
 
 import { makeServer } from '../src/app';
 
-const app = makeServer();
+const app = await makeServer();
 const endpoint = '/api/user';
 
 beforeAll(async () => {
-  await seq.sync({ force: true });
+  //await seq.sync({ force: true });
   await setupDatabase();
 });
 
