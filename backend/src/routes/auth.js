@@ -4,9 +4,10 @@ import { createUser } from '../controllers/createUser.js';
 import { login } from '../controllers/login.js';
 import { updateUser } from '../controllers/updateUser.js';
 import { addPicture } from '../controllers/addPicture.js';
-import { deletePicture } from '../controllers/deletePicture.js';
 import { upload } from '../shared.js';
 import { createInvite } from "../controllers/createInv.js"
+import { getInvite } from '../controllers/getInvite.js';
+//import { deletePicture } from '../controllers/deletePicture.js';
 
 export { authRouter };
 
@@ -16,8 +17,8 @@ authRouter.get('/user', getUser);
 authRouter.post('/user', createUser);
 authRouter.patch('/user', updateUser);
 authRouter.put('/user', login);
-// authRouter.get('/user/invite/:ikey', getInvite);
+authRouter.get('/user/invite/:ikey', getInvite);
 authRouter.post('/user/invite', createInvite);
 
 authRouter.post('/user/pic', upload.single('file'), addPicture);
-authRouter.delete('/user/pic/:name', deletePicture);
+// authRouter.delete('/user/pic/:name', deletePicture);
