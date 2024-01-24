@@ -20,7 +20,7 @@ root.render(
       <Switch>
         <Route exact path="/" element={<App />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/email/:username" element={<EmailSent />} />
+        <Route path="/emailsent/:username" element={<EmailSent />} />
         <Route path="/home" element={<Home />} />
         <Route path="/signup/invite/:ikey" />
       </Switch>
