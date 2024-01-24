@@ -13,13 +13,13 @@ const User = seq.define('User', {
     type: Sequelize.STRING(30),
     allowNull: false,
   },
-  password: {
-    type: Sequelize.STRING(300),
-    allowNull: false,
-  },
   email: {
     // Email verification
     type: Sequelize.STRING(30),
+    allowNull: false,
+  },
+  password: {
+    type: Sequelize.STRING(300),
     allowNull: false,
   },
   firstName: {
@@ -36,7 +36,7 @@ const User = seq.define('User', {
   },
   gender: {
     // "M", "F", "GN", "O"
-    type: Sequelize.STRING(1),
+    type: Sequelize.STRING(2),
     allowNull: false,
   },
   pronoun: {
@@ -65,6 +65,7 @@ const User = seq.define('User', {
     type: Sequelize.STRING(30),
     allowNull: false,
   },
+  
   occupation: {
     type: Sequelize.STRING(30),
   },

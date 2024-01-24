@@ -39,6 +39,72 @@ terraform {
   }
 }
 
+# Cloudfront
+# locals {
+#   s3_origin_id = "myS3Origin"
+# }
+
+# resource "aws_cloudfront_origin_access_control" "default" {
+#   name                              = "default"
+#   description                       = "Default Policy"
+#   origin_access_control_origin_type = "s3"
+#   signing_behavior                  = "always"
+#   signing_protocol                  = "sigv4"
+# }
+
+# resource "aws_cloudfront_origin_access_identity" "tindeggle" {
+#   comment = "Tindeggle"
+# }
+
+# resource "aws_cloudfront_distribution" "s3_distribution" {
+
+#   origin {
+#     domain_name              = aws_s3_bucket.profile_pic_bucket.bucket_regional_domain_name
+#     origin_access_control_id = aws_cloudfront_origin_access_control.default.id
+#     origin_id                = local.s3_origin_id
+#     s3_origin_config {
+#       origin_access_identity = aws_cloudfront_origin_access_identity.tindeggle.cloudfront_access_identity_path
+#     }
+#   }
+
+#   enabled = true
+
+#   default_cache_behavior {
+#     allowed_methods        = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
+#     cached_methods         = ["GET", "HEAD"]
+#     target_origin_id       = local.s3_origin_id
+#     viewer_protocol_policy = "allow-all"
+#   }
+
+#   restrictions {
+#     geo_restriction {
+#       restriction_type = "whitelist"
+#       locations        = ["US", "CA", "GB", "DE"]
+#     }
+#   }
+
+#   viewer_certificate {
+#     cloudfront_default_certificate = true
+#   }
+# }
+
+# data "aws_iam_policy_document" "s3_policy" {
+#   statement {
+#     actions   = ["s3:GetObject"]
+#     resources = ["${aws_s3_bucket.profile_pic_bucket.arn}/*"]
+
+#     principals {
+#       type        = "AWS"
+#       identifiers = [aws_cloudfront_origin_access_identity.tindeggle.iam_arn]
+#     }
+#   }
+# }
+
+# resource "aws_s3_bucket_policy" "tindeggle_pics_policy" {
+#   bucket = aws_s3_bucket.profile_pic_bucket.id
+#   policy = data.aws_iam_policy_document.s3_policy.json
+# }
+
 # VPC
 resource "aws_vpc" "eks_vpc" {
   cidr_block           = "10.0.0.0/16"

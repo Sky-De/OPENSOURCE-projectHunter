@@ -19,13 +19,13 @@ async function createInvite(req, res) {
         return res.status(notValid.status).send(notValid.error);
         } 
         else {
-                const key = await generateKey()
-                const invite = await Invite.create({
+            const key = await generateKey()
+            const invite = await Invite.create({
                 username: data.username,
                 email: data.email,
                 invite_key: key,
                 // expiration: 
-                })
+            })
             
             if (invite) {
                 try {
