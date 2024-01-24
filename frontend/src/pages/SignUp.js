@@ -1,18 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/SignUp.css";
-import SimpleSlider from "../components/SimpleSlider";
+import { Link, useNavigate } from "react-router-dom";
 
-const SignUp = () => {
+const SignUpOne = () => {
+  const [username, setUsername] = useState("");
+  const navigate = useNavigate();
+
+  const handleUsernameInput = (event) => {
+    setUsername(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    navigate(`/emailsent/${username}`);
+  };
+
   return (
-    <div className="register">
-      <div className="container">
-        <div className="header-container d-flex justify-content-center">
-          <h1 className="register-header">Register</h1>
+    <div className="signupone">
+      <div id="signupone-box">
+        <h1 id="signupone-header" className="d-flex justify-content-center">
+          Sign Up Here
+        </h1>
+        <label htmlFor="signupone-email">EMAIL</label>
+        <br />
+        <input
+          id="signupone-email"
+          className="register-user mb-2"
+          type="text"
+          placeholder="Email"
+        />
+        <br />
+        <label htmlFor="signupone-user">USER</label>
+        <br />
+        <input
+          id="signupone-user"
+          className="register-user mb-2"
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={handleUsernameInput}
+        />
+        <br />
+        <div className="d-flex justify-content-center mt-4">
+          <Link onClick={handleSubmit}>
+            <button id="signupone-btn">Submit</button>
+          </Link>
         </div>
-        <SimpleSlider />
       </div>
     </div>
   );
 };
 
-export default SignUp;
+export default SignUpOne;

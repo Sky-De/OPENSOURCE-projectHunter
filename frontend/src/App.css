@@ -36,8 +36,8 @@ body {
   color: var(--primary);
   font-size: 18px;
 }
-input[type="text"],
-input[type="password"] {
+#login-user,
+#login-password {
   background-color: transparent;
   border: none;
   width: 100%;
@@ -47,8 +47,8 @@ input[type="password"] {
   background-repeat: no-repeat;
   padding: 10px;
 }
-input[type="text"],
-input[type="password"],
+#login-user,
+#login-password,
 select,
 textarea {
   color: var(--white);

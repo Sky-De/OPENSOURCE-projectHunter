@@ -18,7 +18,7 @@ function App() {
   }
 
   async function createUser() {
-    const response = await fetch(userEndpoint + '/user', {
+    const response = await fetch(userEndpoint + "/user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,7 +30,7 @@ function App() {
   }
 
   async function login() {
-    const response = await fetch(userEndpoint + '/user', {
+    const response = await fetch(userEndpoint + "/user", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -50,6 +50,7 @@ function App() {
           <div className="d-flex align-items-center">
             <i className="fa-solid fa-user mr-2"></i>
             <input
+              id="login-user"
               className="mb-2"
               type="text"
               placeholder="Username"
@@ -61,6 +62,7 @@ function App() {
           <div className="d-flex align-items-center">
             <i className="fa-solid fa-lock mr-2"></i>
             <input
+              id="login-password"
               type="password"
               placeholder="Password"
               onChange={(e) => {
@@ -70,16 +72,16 @@ function App() {
           </div>
         </div>
 
-        <div class="form-check">
+        <div className="form-check">
           <input
-            class="form-check-input"
+            className="form-check-input"
             type="checkbox"
             value=""
             id="flexCheckDefault"
           />
           <label
             id="remember-me"
-            class="form-check-label"
+            className="form-check-label"
             for="flexCheckDefault"
           >
             Remember me
@@ -87,7 +89,7 @@ function App() {
         </div>
 
         <div className="mb-3">
-          <button id="login-form-btn" className="mr-1" onClick={login}>
+          <button id="login-form-btn" onClick={login}>
             Log In
           </button>
           <br />
@@ -102,17 +104,17 @@ function App() {
         <div className="d-flex justify-content-center mb-3">
           <div id="circle" className="mr-3">
             <a href="/">
-              <i class="fa-brands fa-google mt-1"></i>
+              <i className="fa-brands fa-google mt-1"></i>
             </a>
           </div>
           <div id="circle">
             <a href="/">
-              <i class="fa-brands fa-facebook mt-1"></i>
+              <i className="fa-brands fa-facebook mt-1"></i>
             </a>
           </div>
           <div id="circle" className="ml-3">
             <a href="/">
-              <i class="fa-brands fa-twitter mt-1"></i>
+              <i className="fa-brands fa-twitter mt-1"></i>
             </a>
           </div>
         </div>

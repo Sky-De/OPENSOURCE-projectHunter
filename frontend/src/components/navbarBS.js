@@ -8,7 +8,7 @@ export const NavbarBootstrap = () => {
     <Navbar className="px-5" id="navbar-custom" expand="lg">
       <LinkContainer to="/">
         <Navbar.Brand id="navbar-brand">
-          <i class="fa-solid fa-feather-pointed"></i> CupidConnect
+          <i class="fa-solid fa-feather-pointed"></i> Tindeggle
         </Navbar.Brand>
       </LinkContainer>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
