@@ -65,7 +65,7 @@ const User = seq.define('User', {
     type: Sequelize.STRING(30),
     allowNull: false,
   },
-  
+
   occupation: {
     type: Sequelize.STRING(30),
   },

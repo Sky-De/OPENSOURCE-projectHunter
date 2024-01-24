@@ -116,71 +116,77 @@ describe('PUT /user (login)', function () {
 
 describe('POST /user/invite (createInvite)', function () {
   test('should create Invite object and respond with status 201 if correct information is provided', async () => {
-    expect(1).toBe(2)
-  })
+    expect(1).toBe(2);
+  });
 
   test('should return status code 400 if username is not passed', async () => {
-    expect(1).toBe(2)
-  })
+    expect(1).toBe(2);
+  });
 
   test('should return status code 400 if email is not passed', async () => {
-    expect(1).toBe(2)
-  })
+    expect(1).toBe(2);
+  });
 
   test('should return status code 400 if username is already taken', async () => {
-    expect(1).toBe(2)
-  })
+    expect(1).toBe(2);
+  });
 
   test('should return status code 400 if email is already taken', async () => {
-    expect(1).toBe(2)
-  })
-})
+    expect(1).toBe(2);
+  });
+});
 
 describe('GET /user/invite/:ikey (getInvite)', function () {
   test('should return the Invite object and status 200 if correct ikey is provided', async () => {
-    expect(1).toBe(2)
-  })
+    expect(1).toBe(2);
+  });
 
   test('should return status 400 if invalid ikey is provided', async () => {
-    expect(1).toBe(2)
-  })
+    expect(1).toBe(2);
+  });
 
   test('should return status 400 if the corresponding Invite has been expired', async () => {
-    expect(1).toBe(2)
-  })
-})
+    expect(1).toBe(2);
+  });
+});
 
 // Don't work on this, as the flow of account creation will change due to email verification
 describe('POST /user (createUser)', function () {
   test('should create account if correct information is provided', async () => {
-    expect(1).toBe(2)
+    expect(1).toBe(2);
   });
 
   test('should return status 400 if the corresponding Invite has been expired', async () => {
-    expect(1).toBe(2)
+    expect(1).toBe(2);
   });
 
-  test('should return status 400 and reason for failure if password is too short', async () => { // *NOTE YOU WILL HAVE TO CONSOLE LOG TO SEE THE MESSAGE
-    expect(1).toBe(2)
+  test('should return status 400 and reason for failure if password is too short', async () => {
+    // *NOTE YOU WILL HAVE TO CONSOLE LOG TO SEE THE MESSAGE
+    expect(1).toBe(2);
   });
 
-  test('should return status 400 and reason for failure if password is too long', async () => { // *NOTE YOU WILL HAVE TO CONSOLE LOG TO SEE THE MESSAGE
-    expect(1).toBe(2)
+  test('should return status 400 and reason for failure if password is too long', async () => {
+    // *NOTE YOU WILL HAVE TO CONSOLE LOG TO SEE THE MESSAGE
+    expect(1).toBe(2);
   });
 
-  test('should return status 400 and reason for failure if password is has no uppercase', async () => { // *NOTE YOU WILL HAVE TO CONSOLE LOG TO SEE THE MESSAGE
-    expect(1).toBe(2)
+  test('should return status 400 and reason for failure if password is has no uppercase', async () => {
+    // *NOTE YOU WILL HAVE TO CONSOLE LOG TO SEE THE MESSAGE
+    expect(1).toBe(2);
   });
 
-  test('should return status 400 and reason for failure if password is has no lowercase', async () => { // *NOTE YOU WILL HAVE TO CONSOLE LOG TO SEE THE MESSAGE
-    expect(1).toBe(2)
+  test('should return status 400 and reason for failure if password is has no lowercase', async () => {
+    // *NOTE YOU WILL HAVE TO CONSOLE LOG TO SEE THE MESSAGE
+    expect(1).toBe(2);
   });
 
-  test('should return status 400 and reason for failure if password is no number', async () => { // *NOTE YOU WILL HAVE TO CONSOLE LOG TO SEE THE MESSAGE
-    expect(1).toBe(2)
+  test('should return status 400 and reason for failure if password is no number', async () => {
+    // *NOTE YOU WILL HAVE TO CONSOLE LOG TO SEE THE MESSAGE
+    expect(1).toBe(2);
   });
 
-  test('should return status 400 and reason for failure if password is no symbol', async () => { // *NOTE YOU WILL HAVE TO CONSOLE LOG TO SEE THE MESSAGE
-    expect(1).toBe(2)
+  test('should return status 400 and reason for failure if password is no symbol', async () => {
+    // *NOTE YOU WILL HAVE TO CONSOLE LOG TO SEE THE MESSAGE
+    expect(1).toBe(2);
   });
 });

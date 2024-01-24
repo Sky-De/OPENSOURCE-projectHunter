@@ -5,7 +5,7 @@ import { login } from '../controllers/login.js';
 import { updateUser } from '../controllers/updateUser.js';
 import { addPicture } from '../controllers/addPicture.js';
 import { upload } from '../shared.js';
-import { createInvite } from "../controllers/createInv.js"
+import { createInvite } from '../controllers/createInv.js';
 import { getInvite } from '../controllers/getInvite.js';
 //import { deletePicture } from '../controllers/deletePicture.js';
 

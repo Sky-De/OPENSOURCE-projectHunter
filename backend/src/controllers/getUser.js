@@ -12,9 +12,11 @@ async function getUser(req, res) {
     jwt.verify(token.token, jwtSecret, async (err, decoded) => {
       if (err) return res.status(401).json({ error: err });
       // find user, sanitize user, and return
-      const user = await User.findOne({ where: { username: decoded.user.username } });
-      const sanitizedUser = { ...user, password: undefined};
-    //   const santizedDecoded = { ...decoded.user, password: undefined };
+      const user = await User.findOne({
+        where: { username: decoded.user.username },
+      });
+      const sanitizedUser = { ...user, password: undefined };
+      //   const santizedDecoded = { ...decoded.user, password: undefined };
 
       return res.json(user);
     });

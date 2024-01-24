@@ -1,8 +1,8 @@
-import { Invite } from "../models/invite";
+import { Invite } from '../models/invite';
 
-export {getInvite}
+export { getInvite };
 
-async function getInvite(req, res){
-    Invite
-    res.json({invite: 'temp'})
+async function getInvite(req, res) {
+  Invite;
+  res.json({ invite: 'temp' });
 }
