@@ -2,6 +2,7 @@ import { User } from '../models/user.js'
 import { validGenders, validPasswordCharacters } from '../shared.js'
 import bcrypt from 'bcrypt'
 import pkg from 'password-validator'
+import { Invite } from '../models/invite.js'
 const passwordValidator  = pkg
 
 
@@ -15,7 +16,10 @@ async function createUser(req, res) {
     let currDate = new Date() 
     let milli = currDate.getTime() - date.getTime()
     let year = yearsconversion(milli)
-
+    let invite = await Invite.findOne({
+        where: {invite_key: data.ikey},
+        })
+    if(!invite) return res.status(400).send("no invite")
     const notValid = await validate(data, year) // Input Validation
     if ('error' in notValid) {
         return res.status(notValid.status).send(notValid.error)
@@ -23,9 +27,9 @@ async function createUser(req, res) {
     else {
         bcrypt.hash(data.password, 2, async function(err, hash) {
             const user = await User.create({
-                username: data.username,
+                username: invite.username,
                 password: hash, // DO NOT SEND THIS!!!!
-                email: data.email,
+                email: invite.email,
                 firstName: data.firstName,
                 gender: data.gender,
                 minAge: data.minAge,
@@ -40,6 +44,7 @@ async function createUser(req, res) {
                 distance: data.distance,
                 age:year,
             })
+            await invite.destroy()
     
             const sanitizedUser = { ...user.toJSON(), password: undefined}
 
