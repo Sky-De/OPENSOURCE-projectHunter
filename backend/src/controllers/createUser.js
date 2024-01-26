@@ -17,6 +17,9 @@ async function createUser(req, res) {
         return res.status(notValid.status).send(notValid.error)
     }
     else {
+        let date = new Date(data.dob) 
+        let currDate = new Date() 
+        let mili = currDate.getTime() - date.gitTime()
         bcrypt.hash(data.password, 2, async function(err, hash) {
             const user = await User.create({
                 username: data.username,
@@ -34,7 +37,7 @@ async function createUser(req, res) {
                 state: data.state,
                 occupation: data.occupation,
                 distance: data.distance,
-                age: data.age,
+                age:,
             })
     
             const sanitizedUser = { ...user.toJSON(), password: undefined}
@@ -44,25 +47,37 @@ async function createUser(req, res) {
     }
 }
 
-async function validate(data) {
+// async function validate(data) {
 
-    if (!("firstName" in data)) return { error: "First name not provided", status: 400}
+//     if (!("firstName" in data)) return { error: "First name not provided", status: 400}
 
-    if (!("password" in data)) return { error: "Password not provided", status: 400}
+//     if (!("password" in data)) return { error: "Password not provided", status: 400}
 
-    if (!("age" in data)) return { error: "Age not provided", status: 400}
+//     if (!("age" in data)) return { error: "Age not provided", status: 400}
      
-    if (!("minAge" in data)) return { error: "Min age not provided", status: 400}
+//     if (!("minAge" in data)) return { error: "Min age not provided", status: 400}
 
-    if (!("maxAge" in data)) return { error: "Max age not provided", status: 400}
+//     if (!("maxAge" in data)) return { error: "Max age not provided", status: 400}
 
-    if (!("pronoun" in data)) return { error: "Pronoun not provided", status: 400}
+//     if (!("pronoun" in data)) return { error: "Pronoun not provided", status: 400}
 
-    if (!("preferences" in data)) return { error: "Prefrences not provided", status: 400}
+//     if (!("preferences" in data)) return { error: "Prefrences not provided", status: 400}
 
-    if (!("state" in data)) return { error: "State not provided", status: 400}
+//     if (!("state" in data)) return { error: "State not provided", status: 400}
 
-    if (!("city" in data)) return { error: "City not provided", status: 400}
+//     if (!("city" in data)) return { error: "City not provided", status: 400}
+
+async function validate(data) {
+    const requiredFields = ["firstName", "password", "age", "minAge", "maxAge", "pronoun", "preferences", "state", "city"];
+
+    for (const field of requiredFields) {
+        if (!(field in data)) {
+            return { error: `${field} not provided`, status: 400 };
+        }
+    }
+
+    return { success: "Validation passed", status: 200 };
+
 
     if (!(validGenders.includes(data.gender))) return { error: "Incorrect gender value", status: 400 } // Make sure the inputted gender is an option
     
