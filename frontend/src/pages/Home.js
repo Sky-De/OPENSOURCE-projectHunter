@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
 import AWS from "aws-sdk";
 
+const HOST = 'http://localhost:5000'
+
 const Home = () => {
   const [imageUrl, setImageUrl] = useState("");
   const awsAccess = process.env.AWS_ACCESS;
   const awsSecret = process.env.AWS_SECRET;
 
   useEffect(() => {
+    getUser()
+  }, []);
+
+  async function getUser() {
     AWS.config.update({
       accessKeyId: awsAccess,
       secretAccessKey: awsSecret,
@@ -15,10 +21,17 @@ const Home = () => {
 
     const s3 = new AWS.S3();
 
-    /*
-      This is where the work needs to get done
-        1. Send a get request here to fetch the user information, and then the "Key" key in the params object needs to get the corresponding image names
-    */
+    console.log(localStorage.getItem('accessToken'))
+    const res = await fetch(HOST + '/api/user', {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+        'Content-Type': 'application/json'
+      }
+    })
+
+    const data = await res.json();
+    console.log(data)
+
     const params = {
       Bucket: "tindeggle-profile-pics",
       Key: "default.png",
@@ -31,7 +44,7 @@ const Home = () => {
         setImageUrl(url);
       }
     });
-  }, []);
+  }
 
   return (
     <div className="home">

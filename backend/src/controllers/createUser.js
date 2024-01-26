@@ -53,26 +53,6 @@ async function createUser(req, res) {
     }
 }
 
-// async function validate(data) {
-
-//     if (!("firstName" in data)) return { error: "First name not provided", status: 400}
-
-//     if (!("password" in data)) return { error: "Password not provided", status: 400}
-
-//     if (!("age" in data)) return { error: "Age not provided", status: 400}
-     
-//     if (!("minAge" in data)) return { error: "Min age not provided", status: 400}
-
-//     if (!("maxAge" in data)) return { error: "Max age not provided", status: 400}
-
-//     if (!("pronoun" in data)) return { error: "Pronoun not provided", status: 400}
-
-//     if (!("preferences" in data)) return { error: "Prefrences not provided", status: 400}
-
-//     if (!("state" in data)) return { error: "State not provided", status: 400}
-
-//     if (!("city" in data)) return { error: "City not provided", status: 400}
-
 async function validate(data, year) {
   if (year < 18){
     return { error: "Jailbait", status: 400}

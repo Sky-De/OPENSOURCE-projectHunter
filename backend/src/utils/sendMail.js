@@ -17,7 +17,7 @@ function sendInvite(receiver, inviteKey) {
   const htmlMessage = `
     <p>HTML version of the message</p>
     <p>And this is a <a href=https://youtu.be/V-_O7nl0Ii0?si=uBUlDTtna68OY4QX>link</a>
-    <p>invite key: http://localhost/registration/invite/${inviteKey}<p>
+    <p>invite key: http://localhost:3000/signup/invite/${inviteKey}<p>
     `;
   const mailInvite = {
     from: {

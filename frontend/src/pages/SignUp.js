@@ -2,18 +2,39 @@ import React, { useState } from "react";
 import "../css/SignUp.css";
 import { Link, useNavigate } from "react-router-dom";
 
+const HOST = 'http://localhost:5000'
+
 const SignUpOne = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
 
+  const handleEmailInput = (event) => {
+    setEmail(event.target.value);
+  }
+
   const handleUsernameInput = (event) => {
     setUsername(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    navigate(`/emailsent/${username}`);
+    const res = await fetch(HOST + '/api/user/invite', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username,
+        email
+      })
+    })
+    if (res.status === 200 || res.status === 201) {
+      navigate(`/emailsent/${username}`);
+    }
+    else{
+      console.log(res.text);
+    }
   };
 
   return (
@@ -30,7 +51,7 @@ const SignUpOne = () => {
           type="text"
           placeholder="Email"
           value={email}
-          onChange={handleUsernameInput}
+          onChange={handleEmailInput}
         />
         <br />
         <label htmlFor="signupone-user">USER</label>

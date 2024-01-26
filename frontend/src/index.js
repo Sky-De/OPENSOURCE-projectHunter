@@ -11,6 +11,7 @@ import App from "./App";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import EmailSent from "./pages/EmailSent";
+import Register from "./pages/Register";
 
 const root = createRoot(document.getElementById("root"));
 root.render(
@@ -22,7 +23,7 @@ root.render(
         <Route path="/signup" element={<SignUp />} />
         <Route path="/emailsent/:username" element={<EmailSent />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/signup/invite/:ikey" />
+        <Route path="/signup/invite/:ikey" element={<Register />} />
       </Switch>
     </Router>
   </React.StrictMode>

@@ -11,34 +11,23 @@ function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  async function getUser() {
-    const response = await fetch(userEndpoint);
-    const data = await response.json();
-    setText(data.message);
-  }
-
-  async function createUser() {
-    const response = await fetch(userEndpoint + "/user", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username: username, password: password }),
-    });
-    const data = await response.json();
-    setText(`Created ${data.username}`);
-  }
-
   async function login() {
-    const response = await fetch(userEndpoint + "/user", {
+    const response = await fetch(userEndpoint + "/api/user", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ username: username, password: password }),
+      body: JSON.stringify({ username, password }),
     });
+    if (response.status === 400){
+      const data = await response.text();
+      console.log(data);
+      return;
+    }
     const data = await response.json();
-    setText(`Welcome ${data.username}`);
+    const { token } = data;
+    console.log(token);
+    localStorage.setItem('accessToken', token);
   }
 
   return (
@@ -122,7 +111,7 @@ function App() {
         <p id="sign-up" className="d-flex justify-content-center">
           <span>
             Not a member?{" "}
-            <Link id="sign-up" to="/register" onClick={createUser}>
+            <Link id="sign-up" to="/signup">
               Sign up now
             </Link>
           </span>
