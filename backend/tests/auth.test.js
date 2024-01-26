@@ -160,6 +160,10 @@ describe('POST /user (createUser)', function () {
     expect(1).toBe(2);
   });
 
+  test('should return status 400 if they are a minor', async () => {
+    expect(1).toBe(2);
+  })
+
   test('should return status 400 and reason for failure if password is too short', async () => {
     // *NOTE YOU WILL HAVE TO CONSOLE LOG TO SEE THE MESSAGE
     expect(1).toBe(2);

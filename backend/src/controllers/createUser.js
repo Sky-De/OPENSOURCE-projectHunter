@@ -11,17 +11,16 @@ export { createUser }
 
 async function createUser(req, res) {
     const data = req.body
+    let date = new Date(data.dob) 
+    let currDate = new Date() 
+    let milli = currDate.getTime() - date.getTime()
+    let year = yearsconversion(milli)
 
-    const notValid = await validate(data) // Input Validation
-    if (notValid) {
+    const notValid = await validate(data, year) // Input Validation
+    if ('error' in notValid) {
         return res.status(notValid.status).send(notValid.error)
     }
     else {
-        let date = new Date(data.dob) 
-        let currDate = new Date() 
-        let milli = currDate.getTime() - date.getTime()
-        let year = milliToYears(milli)
-    
         bcrypt.hash(data.password, 2, async function(err, hash) {
             const user = await User.create({
                 username: data.username,
@@ -69,8 +68,12 @@ async function createUser(req, res) {
 
 //     if (!("city" in data)) return { error: "City not provided", status: 400}
 
-async function validate(data) {
-    const requiredFields = ["firstName", "password", "age", "minAge", "maxAge", "pronoun", "preferences", "state", "city"];
+async function validate(data, year) {
+  if (year < 18){
+    return { error: "Jailbait", status: 400}
+  }
+
+    const requiredFields = ["firstName", "password", "minAge", "maxAge", "pronoun", "preferences", "state", "city"];
 
     for (const field of requiredFields) {
         if (!(field in data)) {
@@ -79,10 +82,6 @@ async function validate(data) {
     }
 
     if (!(validGenders.includes(data.gender))) return { error: "Incorrect gender value", status: 400 } // Make sure the inputted gender is an option
-    
-    if (await User.findOne({where: {username: data.username}})) return { error: "Username is already taken", status: 400 } // Username must be unique
-
-    if (await User.findOne({where: {email: data.email}})) return { error: "Email is already taken", status: 400 } // Email must be unique
 
     schema
         .is().min(8)
