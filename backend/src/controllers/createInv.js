@@ -2,6 +2,7 @@ import { Invite } from '../models/invite.js';
 import { User } from '../models/user.js';
 import { sendInvite } from '../utils/sendMail.js';
 import randomstring from 'randomstring';
+import { Op } from 'sequelize';
 
 export { createInvite };
 
@@ -17,12 +18,12 @@ async function createInvite(req, res) {
     );
     return resendInvite(req, res);
   } else {
-    const key = await generateKey();
+    const key = generateKey();
     const invite = await Invite.create({
       username: data.username,
       email: data.email,
       invite_key: key,
-      // expiration:
+      expiration: expiration(),
     });
 
     if (invite) {
@@ -52,14 +53,19 @@ async function validate(data) {
 
   if (await User.findOne({ where: { email: data.email } }))
     return { error: 'Email is already taken', status: 400 }; // Email must be unique
+
+  if (await Invite.findOne({ where: { [Op.and]: [{username: data.username}, {email: {[Op.ne]: data.email}}] } })) 
+    return { error: 'Username is already taken', status: 400 }; // Username must be unique
 }
 
 async function resendInvite(req, res) {
   const data = req.body;
   const invite = await Invite.findOne({ where: { email: data.email } });
   const new_key = generateKey();
-  // console.log(new_key)
+
+  invite.username = data.username;
   invite.invite_key = new_key;
+  invite.expiration = expiration();
   await invite.save();
 
   try {
@@ -74,4 +80,11 @@ async function resendInvite(req, res) {
 
 function generateKey() {
   return randomstring.generate(30);
+}
+
+function expiration() {
+  let expiration = new Date()
+  console.log(expiration)
+  expiration.setDate(expiration.getDate()+ 1);
+  return expiration;
 }

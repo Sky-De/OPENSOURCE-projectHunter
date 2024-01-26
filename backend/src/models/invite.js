@@ -19,6 +19,6 @@ const Invite = seq.define('Invite', {
   },
   expiration: {
     type: Sequelize.DATE,
-    // allowNull: false,
+    allowNull: false,
   },
 });
