@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const SignUpOne = () => {
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const navigate = useNavigate();
 
   const handleUsernameInput = (event) => {
@@ -28,6 +29,8 @@ const SignUpOne = () => {
           className="register-user mb-2"
           type="text"
           placeholder="Email"
+          value={email}
+          onChange={handleUsernameInput}
         />
         <br />
         <label htmlFor="signupone-user">USER</label>
