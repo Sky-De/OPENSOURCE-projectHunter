@@ -12,6 +12,11 @@
 #### <code>npm i</code>
 ## <code>npm run test</code>
 
+### [in backend directory] Prettier Formatter
+## <code>npm run pretty</code>
+### [in backend directory] ESLint Check
+## <code>npm run lint</code>
+
 
 exec into PostgreSQL docker container:
     - docker exec -it postgres_container psql -U root test_db

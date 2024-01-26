@@ -1,2 +1,0 @@
-1. In production, the "backend/src/models/connection.js" could error due to process.env.NODE_ENV not being assigned
-2. In "k8s/backend-cluster-ip-service.yml", could error due to component name being "service", maybe it should be named "backend"

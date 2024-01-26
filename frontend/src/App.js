@@ -5,7 +5,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import "./App.css";
 
 function App() {
-  let userEndpoint = "http://localhost:4000/user";
+  let userEndpoint = "http://localhost:5000";
 
   const [text, setText] = useState("Placeholder");
   const [username, setUsername] = useState("");
@@ -18,7 +18,7 @@ function App() {
   }
 
   async function createUser() {
-    const response = await fetch(userEndpoint, {
+    const response = await fetch(userEndpoint + "/user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,7 +30,7 @@ function App() {
   }
 
   async function login() {
-    const response = await fetch(userEndpoint, {
+    const response = await fetch(userEndpoint + "/user", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -39,12 +39,6 @@ function App() {
     });
     const data = await response.json();
     setText(`Welcome ${data.username}`);
-  }
-
-  async function logout() {
-    const response = await fetch(userEndpoint, { method: "DELETE" });
-    const data = await response.json();
-    setText(data.message);
   }
 
   return (
@@ -56,6 +50,7 @@ function App() {
           <div className="d-flex align-items-center">
             <i className="fa-solid fa-user mr-2"></i>
             <input
+              id="login-user"
               className="mb-2"
               type="text"
               placeholder="Username"
@@ -67,6 +62,7 @@ function App() {
           <div className="d-flex align-items-center">
             <i className="fa-solid fa-lock mr-2"></i>
             <input
+              id="login-password"
               type="password"
               placeholder="Password"
               onChange={(e) => {
@@ -76,16 +72,16 @@ function App() {
           </div>
         </div>
 
-        <div class="form-check">
+        <div className="form-check">
           <input
-            class="form-check-input"
+            className="form-check-input"
             type="checkbox"
             value=""
             id="flexCheckDefault"
           />
           <label
             id="remember-me"
-            class="form-check-label"
+            className="form-check-label"
             for="flexCheckDefault"
           >
             Remember me
@@ -93,7 +89,7 @@ function App() {
         </div>
 
         <div className="mb-3">
-          <button id="login-form-btn" className="mr-1" onClick={login}>
+          <button id="login-form-btn" onClick={login}>
             Log In
           </button>
           <br />
@@ -108,17 +104,17 @@ function App() {
         <div className="d-flex justify-content-center mb-3">
           <div id="circle" className="mr-3">
             <a href="/">
-              <i class="fa-brands fa-google mt-1"></i>
+              <i className="fa-brands fa-google mt-1"></i>
             </a>
           </div>
           <div id="circle">
             <a href="/">
-              <i class="fa-brands fa-facebook mt-1"></i>
+              <i className="fa-brands fa-facebook mt-1"></i>
             </a>
           </div>
           <div id="circle" className="ml-3">
             <a href="/">
-              <i class="fa-brands fa-twitter mt-1"></i>
+              <i className="fa-brands fa-twitter mt-1"></i>
             </a>
           </div>
         </div>

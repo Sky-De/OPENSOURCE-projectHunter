@@ -1,14 +1,13 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import "../css/EmailSent.css";
-import SimpleSlider from "../components/SimpleSlider";
 
-const Email = () => {
+const EmailSent = () => {
   const { username } = useParams();
 
   return (
-    <div className="email-header">
-      <div className="container">
+    <div className="emailsent">
+      <div id="sent-message" className="container">
         <div className="header-container d-flex justify-content-center">
           <h1 className="email-header">Email Sent</h1>
         </div>
@@ -20,4 +19,4 @@ const Email = () => {
   );
 };
 
-export default Email;
+export default EmailSent;

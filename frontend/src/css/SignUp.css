@@ -1,98 +1,55 @@
-@import "../index.css";
-
-.register-header {
-  background: var(--white);
-  width: 500px;
-  text-align: center;
-  position: relative;
-  padding: 16px 0;
-  border-radius: 0.2em 0.2em 0 0;
-  z-index: 2;
-}
-
-.register {
-  background: rgb(237, 67, 103);
-  background: var(--gradient);
-  height: 100%;
-  width: 100%;
+#signupone-box {
   position: fixed;
-  padding-top: 20px;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80%;
+  width: 50%;
+  padding: 40px 80px;
+  background-color: var(--background);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.simple-slider {
-  position: relative;
-  bottom: 44px;
+#signupone-header {
+  color: var(--white);
+  font-size: 30px;
+  margin-bottom: 60px;
 }
 
-.carousel-inner .carousel-item {
-  transition: -webkit-transform 0.3s ease;
-  transition: transform 0.3s ease;
-  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
-}
-.slide {
-  padding: 15px;
-  background-color: var(--white);
-  border-radius: 0.5em;
-  width: 500px;
-  height: 400px;
-}
-.carousel-inner,
-.carousel-items-container {
-  height: 100%;
-}
-.carousel-item {
-  padding: 5px;
-  height: 100%;
-}
-.input-container {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+label[for="signupone-email"],
+label[for="signupone-user"] {
+  color: var(--primary);
 }
 
-input,
-select,
-textarea,
-.custom-select,
-input[type="number"] {
-  color: black;
-}
-input.register-first,
-input.register-user,
-input.register-password,
-input.register-email,
-input[type="date"],
-input[type="number"] {
-  background: var(--white);
-  border: 1px solid #ced4da;
-  padding: 0.375rem 0.75rem;
-  border-radius: 0.25rem;
-}
-input[type="date"],
-input[type="number"] {
+#signupone-email,
+#signupone-user {
+  background-color: transparent;
+  border: solid 1px var(--secondary);
+  border-radius: 2px;
   width: 100%;
+  padding: 10px;
 }
-input[type="number"] {
-  width: 150px;
+#signupone-email,
+#signupone-user,
+select,
+textarea {
+  color: var(--white);
 }
-::-webkit-calendar-picker-indicator {
-  filter: invert(1);
-}
-.form-check,
-.form-check-label {
-  display: inline;
-}
-input[type="checkbox"]:checked:before {
-  background: var(--white);
+#signupone-email::placeholder,
+#signupone-user::placeholder {
+  color: var(--gray);
 }
 
-/* .slider-item {
-  text-align: center;
-  justify-content: center;
-  display: flex;
+#signupone-btn {
+  background-color: var(--secondary);
+  border: 1px solid var(--secondary);
+  color: white;
+  padding: 8px 30px;
+  border-radius: 5px;
+  margin-top: 20px;
+  transition: all 100ms ease-in-out;
 }
-
-.panel {
-  background: var(--primary);
-} */
+#signupone-btn:hover {
+  background-color: transparent;
+}

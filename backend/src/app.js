@@ -1,27 +1,31 @@
-import cors from 'cors'
-import express from 'express'
-import { authRouter } from './routes/auth.js'
-import 'dotenv/config.js'
+import cors from 'cors';
+import express from 'express';
+import { authRouter } from './routes/auth.js';
+import 'dotenv/config.js';
+import { seq } from './models/connection.js';
+import { User } from './models/user.js';
+import { Invite } from './models/invite.js';
 
-const port = process.env.PORT
+const port = process.env.PORT;
 
-const corsOptions = { 
-    AccessControlAllowOrigin: '*',  
-    origin: '*',  
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE' 
-  }
+const corsOptions = {
+  AccessControlAllowOrigin: '*',
+  origin: '*',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+};
 
-const app = express()
+const app = express();
 
-app.use(cors(corsOptions))
-app.use(express.json())
+app.use(cors(corsOptions));
+app.use(express.json());
 
-app.use('/api', authRouter)
+app.use('/api', authRouter);
 
-function makeServer() {
+async function makeServer() {
+  await seq.sync();
   return app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
   });
 }
 
-export { makeServer }
+export { makeServer };

@@ -1,4 +1,8 @@
-@import "../index.css";
+#sent-message {
+  margin-top: 200px;
+}
+
+/* @import "../index.css";
 
 .register-header {
   background: var(--white);
@@ -85,7 +89,7 @@ input[type="number"] {
 }
 input[type="checkbox"]:checked:before {
   background: var(--white);
-}
+} */
 
 /* .slider-item {
   text-align: center;
