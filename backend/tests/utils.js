@@ -1,4 +1,5 @@
 import { User } from '../src/models/user';
+import { Invite } from '../src/models/invite';
 import bcrypt from 'bcrypt';
 
 export { setupDatabase, teardownDatabase };
@@ -40,4 +41,5 @@ async function setupDatabase() {
 
 async function teardownDatabase() {
   await User.destroy({ where: {} });
+  await Invite.destroy({ where: {}});
 }

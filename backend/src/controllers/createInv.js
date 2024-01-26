@@ -7,37 +7,36 @@ export { createInvite };
 
 async function createInvite(req, res) {
   const data = req.body;
+  
+  const notValid = await validate(data); // Input Validation
+  if (notValid)
+    return res.status(notValid.status).send(notValid.error);
   if (await Invite.findOne({ where: { email: data.email } })) {
     console.log(
       'Seems you\'ve already tried signing up. Sending a new invite...',
     );
     return resendInvite(req, res);
   } else {
-    const notValid = await validate(data); // Input Validation
-    if (notValid) {
-      return res.status(notValid.status).send(notValid.error);
-    } else {
-      const key = await generateKey();
-      const invite = await Invite.create({
-        username: data.username,
-        email: data.email,
-        invite_key: key,
-        // expiration:
-      });
+    const key = await generateKey();
+    const invite = await Invite.create({
+      username: data.username,
+      email: data.email,
+      invite_key: key,
+      // expiration:
+    });
 
-      if (invite) {
-        try {
-          sendInvite(data.email, key);
-          console.log('HOORAY!');
-          return res.status(201).send('Invite sent.');
-        } catch (err) {
-          console.log('OOPS!');
-          return res.status(400).send(err);
-        }
-      } else {
-        console.log('no invite?');
-        return res.status(400).send('error');
+    if (invite) {
+      try {
+        sendInvite(data.email, key);
+        console.log('HOORAY!');
+        return res.status(201).send('Invite sent.');
+      } catch (err) {
+        console.log('OOPS!');
+        return res.status(400).send(err);
       }
+    } else {
+      console.log('no invite?');
+      return res.status(400).send('error');
     }
   }
 }
