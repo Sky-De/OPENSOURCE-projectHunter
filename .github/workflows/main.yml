@@ -39,6 +39,7 @@ jobs:
 
         - name: Linting
           run: npm run lint
+          working-directory: projectHunter/backend
 
         - name: Testing
           run: npm run test
