@@ -20,10 +20,10 @@ spec:
         image: zirolet/multi-frontend:latest
         resources:
           limits:
-            memory: "1024Mi"   # Maximum memory allowed
+            memory: "5Gi"   # Maximum memory allowed
             cpu: "2"         # Maximum CPU cores allowed
           requests:
-            memory: "128Mi"   # Initial memory request
+            memory: "2Gi"   # Initial memory request
             cpu: "0.1"         # Initial CPU cores request
         ports:
         - containerPort: 3000

@@ -8,12 +8,13 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build
+CMD ["npm", "start"]
+# RUN npm run build
 
-FROM nginx
+# FROM nginx
 
-EXPOSE 3000
+# EXPOSE 3000
 
-COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+# COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 
-COPY --from=BUILD /app/build /usr/share/nginx/html
+# COPY --from=BUILD /app/build /usr/share/nginx/html

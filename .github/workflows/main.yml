@@ -92,6 +92,6 @@ jobs:
           uses: docker/build-push-action@v2
           with:
             context: ./frontend
-            file: ./backend/Dockerfile
+            file: ./frontend/Dockerfile
             push: true
             tags: zirolet/multi-frontend:latest
