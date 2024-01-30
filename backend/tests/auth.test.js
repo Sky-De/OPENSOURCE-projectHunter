@@ -9,7 +9,6 @@ import {
   afterEach,
 } from 'vitest';
 import { setupDatabase, teardownDatabase } from './utils';
-import { seq } from '../src/models/connection';
 
 import { makeServer } from '../src/app';
 
@@ -116,7 +115,6 @@ describe('PUT /user (login)', function () {
 });
 
 describe('POST /user/invite (createInvite)', function () {
-
   beforeEach(async () => {
     //await seq.sync({ force: true });
     await setupDatabase();
@@ -124,51 +122,61 @@ describe('POST /user/invite (createInvite)', function () {
 
   afterEach(async () => {
     await teardownDatabase();
-  })
+  });
 
   test('should create Invite object and respond with status 201 if correct information is provided', async () => {
-    const { text, statusCode } = await request(app).post(endpoint + '/invite').send({
-      username: 'testfromtest',
-      email: 'testfromtest@gmail.com',
-    });
+    const { text, statusCode } = await request(app)
+      .post(endpoint + '/invite')
+      .send({
+        username: 'testfromtest',
+        email: 'testfromtest@gmail.com',
+      });
 
     expect(statusCode).toBe(201);
     expect(text).toBe('Invite sent.');
   });
 
   test('should return status code 400 if username is not passed', async () => {
-    const { text, statusCode } = await request(app).post(endpoint + '/invite').send({
-      email: 'testfromtest@gmail.com',
-    });
+    const { text, statusCode } = await request(app)
+      .post(endpoint + '/invite')
+      .send({
+        email: 'testfromtest@gmail.com',
+      });
 
     expect(statusCode).toBe(400);
-    expect(text).toBe('Username not provided')
+    expect(text).toBe('Username not provided');
   });
 
   test('should return status code 400 if email is not passed', async () => {
-    const { text, statusCode } = await request(app).post(endpoint + '/invite').send({
-      username: 'testfromtest',
-    });
+    const { text, statusCode } = await request(app)
+      .post(endpoint + '/invite')
+      .send({
+        username: 'testfromtest',
+      });
 
     expect(statusCode).toBe(400);
-    expect(text).toBe('Email not provided')
+    expect(text).toBe('Email not provided');
   });
 
   test('should return status code 400 if username is already taken', async () => {
-    const { text, statusCode } = await request(app).post(endpoint + '/invite').send({
-      username: 'testuser1',
-      email: 'testfromtest@gmail.com',
-    });
+    const { text, statusCode } = await request(app)
+      .post(endpoint + '/invite')
+      .send({
+        username: 'testuser1',
+        email: 'testfromtest@gmail.com',
+      });
 
     expect(statusCode).toBe(400);
     expect(text).toBe('Username is already taken');
   });
 
   test('should return status code 400 if email is already taken', async () => {
-    const { text, statusCode } = await request(app).post(endpoint + '/invite').send({
-      username: 'testfromtest',
-      email: 'testuser1@gmail.com',
-    });
+    const { text, statusCode } = await request(app)
+      .post(endpoint + '/invite')
+      .send({
+        username: 'testfromtest',
+        email: 'testuser1@gmail.com',
+      });
 
     expect(statusCode).toBe(400);
     expect(text).toBe('Email is already taken');
@@ -234,6 +242,6 @@ describe('POST /user/invite (createInvite)', function () {
 //   });
 
 //   test('should have deleted the corresponding invite', async () => {
-    
+
 //   })
 // });

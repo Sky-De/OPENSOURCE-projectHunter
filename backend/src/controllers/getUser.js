@@ -15,8 +15,7 @@ async function getUser(req, res) {
       const user = await User.findOne({
         where: { username: decoded.user.username },
       });
-      const sanitizedUser = { ...user, password: undefined };
-      //   const santizedDecoded = { ...decoded.user, password: undefined };
+      // const sanitizedUser = { ...user, password: undefined };
 
       return res.json(user);
     });

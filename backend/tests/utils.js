@@ -41,5 +41,5 @@ async function setupDatabase() {
 
 async function teardownDatabase() {
   await User.destroy({ where: {} });
-  await Invite.destroy({ where: {}});
+  await Invite.destroy({ where: {} });
 }

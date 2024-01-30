@@ -3,8 +3,6 @@ import express from 'express';
 import { authRouter } from './routes/auth.js';
 import 'dotenv/config.js';
 import { seq } from './models/connection.js';
-import { User } from './models/user.js';
-import { Invite } from './models/invite.js';
 
 const port = process.env.PORT;
 

@@ -8,10 +8,9 @@ export { createInvite };
 
 async function createInvite(req, res) {
   const data = req.body;
-  
+
   const notValid = await validate(data); // Input Validation
-  if (notValid)
-    return res.status(notValid.status).send(notValid.error);
+  if (notValid) return res.status(notValid.status).send(notValid.error);
   if (await Invite.findOne({ where: { email: data.email } })) {
     console.log(
       'Seems you\'ve already tried signing up. Sending a new invite...',
@@ -54,7 +53,16 @@ async function validate(data) {
   if (await User.findOne({ where: { email: data.email } }))
     return { error: 'Email is already taken', status: 400 }; // Email must be unique
 
-  if (await Invite.findOne({ where: { [Op.and]: [{username: data.username}, {email: {[Op.ne]: data.email}}] } })) 
+  if (
+    await Invite.findOne({
+      where: {
+        [Op.and]: [
+          { username: data.username },
+          { email: { [Op.ne]: data.email } },
+        ],
+      },
+    })
+  )
     return { error: 'Username is already taken', status: 400 }; // Username must be unique
 }
 
@@ -83,8 +91,8 @@ function generateKey() {
 }
 
 function expiration() {
-  let expiration = new Date()
-  console.log(expiration)
-  expiration.setDate(expiration.getDate()+ 1);
+  let expiration = new Date();
+  console.log(expiration);
+  expiration.setDate(expiration.getDate() + 1);
   return expiration;
 }
