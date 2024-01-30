@@ -1,4 +1,4 @@
-apiVersion: app/v1
+apiVersion: apps/v1
 kind: Deployment
 
 metadata:
@@ -8,7 +8,8 @@ metadata:
 spec:
   replicas: 1
   selector:
-    app: frontend
+    matchLabels:
+      app: frontend
   template:
     metadata:
       labels:
@@ -16,11 +17,11 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: frontend
+        image: zirolet/multi-frontend:latest
         resources:
           limits:
-            memory: "256Mi"   # Maximum memory allowed
-            cpu: "0.5"         # Maximum CPU cores allowed
+            memory: "1024Mi"   # Maximum memory allowed
+            cpu: "2"         # Maximum CPU cores allowed
           requests:
             memory: "128Mi"   # Initial memory request
             cpu: "0.1"         # Initial CPU cores request

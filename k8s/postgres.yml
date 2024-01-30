@@ -1,4 +1,4 @@
-apiVersion: app/v1
+apiVersion: apps/v1
 kind: Deployment
 
 metadata:
@@ -8,7 +8,8 @@ metadata:
 spec:
   replicas: 1
   selector:
-    app: postgres
+    matchLabels:
+      app: postgres
   template:
     metadata:
       labels:
@@ -19,13 +20,13 @@ spec:
         image: postgres
         resources:
           limits:
-            memory: "256Mi"   # Maximum memory allowed
-            cpu: "0.5"         # Maximum CPU cores allowed
+            memory: "1024Mi"   # Maximum memory allowed
+            cpu: "2"         # Maximum CPU cores allowed
           requests:
             memory: "128Mi"   # Initial memory request
             cpu: "0.1"         # Initial CPU cores request
         ports:
-        - containerPort: 12345
+        - containerPort: 8080
         env:
         - name: POSTGRES_USER
           valueFrom:
@@ -53,5 +54,5 @@ spec:
     app: postgres
   ports:
     - protocol: TCP
-      port: 12345
-      targetPort: 12345
+      port: 8080
+      targetPort: 8080
