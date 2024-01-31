@@ -1,0 +1,97 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: backend-deployment
+  labels:
+    app: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: zirolet/multi-backend:latest
+        resources:
+          limits:
+            memory: "5Gi"   # Maximum memory allowed
+            cpu: "2"         # Maximum CPU cores allowed
+          requests:
+            memory: "2Gi"   # Initial memory request
+            cpu: "0.1"         # Initial CPU cores request
+        ports:
+        - containerPort: 5000
+        env:
+        - name: AWS_ACCESS
+          valueFrom:
+            secretKeyRef:
+              name: backend-secret
+              key: aws-access
+        - name: AWS_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: backend-secret
+              key: aws-secret
+        - name: PORT
+          value: "5000"
+        - name: JWTSECRET
+          valueFrom:
+            secretKeyRef:
+              name: backend-secret
+              key: jwtsecret
+        - name: DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: backend-secret
+              key: db-user
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: backend-secret
+              key: db-password
+        - name: DB_DB
+          valueFrom:
+            secretKeyRef:
+              name: backend-secret
+              key: db-db
+        - name: EMAIL_ADDRESS
+          valueFrom:
+            secretKeyRef:
+              name: backend-secret
+              key: email-address
+        - name: EMAIL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: backend-secret
+              key: email-password
+        - name: EMAIL_HOST
+          valueFrom:
+            secretKeyRef:
+              name: backend-secret
+              key: email-host
+        - name: EMAIL_PORT
+          value: "587"
+        - name: DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-config
+              key: postgres-url
+---
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: backend-service
+spec:
+  selector:
+    app: backend
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000

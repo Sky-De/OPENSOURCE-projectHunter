@@ -26,7 +26,7 @@ spec:
             memory: "128Mi"   # Initial memory request
             cpu: "0.1"         # Initial CPU cores request
         ports:
-        - containerPort: 8080
+        - containerPort: 5432
         env:
         - name: POSTGRES_USER
           valueFrom:
@@ -54,5 +54,5 @@ spec:
     app: postgres
   ports:
     - protocol: TCP
-      port: 8080
-      targetPort: 8080
+      port: 5432
+      targetPort: 5432

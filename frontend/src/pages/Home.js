@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from "react";
 import AWS from "aws-sdk";
 
-const HOST = 'http://localhost:5000'
+let HOST
+if (process.env.REACT_APP_NODE_ENV === "dev") {
+  console.log("Welcome to Dev mode")
+  HOST = "http://localhost:5000";
+}
+else {
+  HOST = "http://127.0.0.1"
+}
 
 const Home = () => {
   const [imageUrl, setImageUrl] = useState("");
-  const awsAccess = process.env.AWS_ACCESS;
-  const awsSecret = process.env.AWS_SECRET;
+  const awsAccess = process.env.REACT_APP_AWS_ACCESS;
+  const awsSecret = process.env.REACT_APP_AWS_SECRET;
 
   useEffect(() => {
     getUser()

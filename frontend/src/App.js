@@ -4,15 +4,22 @@ import { Nav } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import "./App.css";
 
-function App() {
-  let userEndpoint = "http://localhost:5000";
+let HOST
+if (process.env.REACT_APP_NODE_ENV === "dev") {
+  console.log("Welcome to Dev mode")
+  HOST = "http://localhost:5000";
+}
+else {
+  HOST = "http://127.0.0.1"
+}
 
+function App() {
   const [text, setText] = useState("Placeholder");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   async function login() {
-    const response = await fetch(userEndpoint + "/api/user", {
+    const response = await fetch(HOST + "/api/user", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

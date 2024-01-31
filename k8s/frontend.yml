@@ -28,16 +28,18 @@ spec:
         ports:
         - containerPort: 3000
         env:
-        - name: AWS_ACCESS
+        - name: REACT_APP_AWS_ACCESS
           valueFrom:
             secretKeyRef:
               name: frontend-secret
               key: aws-access
-        - name: AWS_SECRET
+        - name: REACT_APP_AWS_SECRET
           valueFrom:
             secretKeyRef:
               name: frontend-secret
               key: aws-secret
+        - name: REACT_APP_NODE_ENV
+          value: "prod"
 ---
 apiVersion: v1
 kind: Service

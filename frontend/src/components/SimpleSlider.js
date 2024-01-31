@@ -3,7 +3,14 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-const HOST = 'http://localhost:5000'
+let HOST
+if (process.env.REACT_APP_NODE_ENV === "dev") {
+  console.log("Welcome to Dev mode")
+  HOST = "http://localhost:5000";
+}
+else {
+  HOST = "http://127.0.0.1"
+}
 
 function SimpleSlider() {
 
