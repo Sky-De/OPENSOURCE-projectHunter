@@ -1,3 +1,0 @@
-1. App crashes when trying to delete but you are not logged in, AKA token is expired/missing
-2. Running delete endpoint doesn't delete file from S3 bucket, so tempoprary solution is deleting file path from the array.
-    - Must create script that will delete files that are not being used
