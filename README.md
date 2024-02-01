@@ -1,7 +1,8 @@
 ## HOW TO RUN
 
-### Backend needs Postman, Node, and Docker Installed!
-### Frontend needs only Docker!
+### Backend needs Docker, Node, and Postman Installed!
+### Frontend needs Docker and Node!
+### Mobile needs Docker, Node, and Expo Go Mobile App (On Phone) Installed!
 
 #### 1. In backend directory, create .env file with appropriate "PORT, JWTSECRET, DB_USERNAME, DB_PASSWORD, DB_PORT" environment variables, refer to pinned comment in "important-info" channel in discord to know how the file should look
 #### 2. In parent directory with Docker Desktop already running, run this command in terminal: 
