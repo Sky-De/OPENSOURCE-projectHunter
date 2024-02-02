@@ -1,13 +1,13 @@
 import React from "react";
-import "../css/SignUp.css";
+import "../css/Register.css";
 import SimpleSlider from "../components/SimpleSlider";
 
 const Register = () => {
   return (
     <div className="register">
-      <div className="container">
-        <div className="header-container d-flex justify-content-center">
-          <h1 className="register-header">Register</h1>
+      <div id="register-container" className="container">
+        <div id="header-container" className="d-flex justify-content-center">
+          <h1 id="register-header">Fill out your info</h1>
         </div>
         <SimpleSlider />
       </div>

@@ -3,52 +3,49 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-let HOST
+let HOST;
 if (process.env.REACT_APP_NODE_ENV === "dev") {
-  console.log("Welcome to Dev mode")
+  console.log("Welcome to Dev mode");
   HOST = "http://localhost:5000";
-}
-else {
-  HOST = "http://127.0.0.1"
+} else {
+  HOST = "http://127.0.0.1";
 }
 
 function SimpleSlider() {
-
   const { ikey } = useParams();
-  const [p,setP]=useState('password');
+  const [p, setP] = useState("password");
 
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
-  const [dob, setDOB] = useState('');
-  const [gender, setGender] = useState('');
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [dob, setDOB] = useState("");
+  const [gender, setGender] = useState("");
   const [preferences, setPreference] = useState([]);
   const [minAge, setMinAge] = useState(18);
   const [maxAge, setMaxAge] = useState(50);
 
   useEffect(() => {
     fetchInvite();
-  }, [])
+  }, []);
 
   async function fetchInvite() {
-    const res = await fetch(HOST + `/api/user/invite/${ikey}`)
+    const res = await fetch(HOST + `/api/user/invite/${ikey}`);
     const data = await res.json();
     console.log(data.username, data.email);
-    if ('check to make sure it has not expired here') {
+    if ("check to make sure it has not expired here") {
       setUsername(data.username);
       setEmail(data.email);
-    }
-    else{
+    } else {
       // redirect to login or signup here
     }
   }
 
   function myFunction() {
     if (p === "password") {
-      setP('text');
+      setP("text");
     } else {
-     setP('password');
+      setP("password");
     }
   }
 
@@ -70,29 +67,27 @@ function SimpleSlider() {
     console.log(gender);
   }
 
-  function handleMalePref(event){
+  function handleMalePref(event) {
     let temp = preferences;
-    if ("M" in temp)
-      temp = temp.filter(item => item !== "M");
-    else
-      temp.push(event.target.value);
+    if ("M" in temp) temp = temp.filter((item) => item !== "M");
+    else temp.push(event.target.value);
     setPreference(temp);
     console.log(temp);
   }
 
-  function handleMinAge(event){
+  function handleMinAge(event) {
     setMinAge(event.target.value);
   }
 
-  function handleMaxAge(event){
+  function handleMaxAge(event) {
     setMaxAge(event.target.value);
   }
 
   async function submit() {
-    const res = await fetch(HOST + '/api/user', {
-      method: 'POST',
+    const res = await fetch(HOST + "/api/user", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         password,
@@ -105,9 +100,9 @@ function SimpleSlider() {
         pronoun: "Male",
         city: "Houston",
         state: "TX",
-        ikey
-      })
-    })
+        ikey,
+      }),
+    });
     const data = await res.text();
     if (res.status === 400) {
       console.log(data);
@@ -121,95 +116,79 @@ function SimpleSlider() {
         <div
           id="carouselExampleCaptions"
           class="carousel slide"
-          data-bs-theme="dark"
           pause="true"
           data-bs-wrap="false"
         >
-          <div class="carousel-indicators">
-            <button
-              type="button"
-              data-bs-target="#carouselExampleCaptions"
-              data-bs-slide-to="0"
-              class="active"
-              aria-current="true"
-              aria-label="Slide 1"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#carouselExampleCaptions"
-              data-bs-slide-to="1"
-              aria-label="Slide 2"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#carouselExampleCaptions"
-              data-bs-slide-to="2"
-              aria-label="Slide 3"
-            ></button>
-          </div>
-
           {/* carousel content */}
           <div class="carousel-inner">
             {/* carousel slide 1 */}
             <div class="carousel-item active">
               <div className="input-container">
-                <div className="input-content">
-                  <label for="username">Username</label>
-                  <br />
+                <br />
+                <label id="register-label" for="password">
+                  PASSWORD
+                </label>
+                <br />
+                <input
+                  id="register-password"
+                  className="register-password mb-2"
+                  type={p}
+                  placeholder="Password"
+                  onChange={handlePassword}
+                />
+                <div className="form-check">
                   <input
-                    className="register-user mb-2"
-                    type="text"
-                    placeholder="Username"
-                    value={username}
-                    disabled
+                    class="form-check-input"
+                    type="checkbox"
+                    id="flexCheckDefault"
+                    onClick={myFunction}
                   />
-                  <label for="email">Email</label>
-                  <br />
-                  <input
-                    className="register-email mb-2"
-                    type="text"
-                    placeholder="Email"
-                    value={email}
-                    disabled
-                  /> 
-                  </div>   
-                  <br />
-                  <label for="password">Password</label>
-                  <br />
-                  <input
-                    className="register-password mb-2"
-                    type={p}
-                    placeholder="Password"
-                    onChange={handlePassword}
-                  />
-                  <input type="checkbox" onClick={myFunction}/>Show Password
-                  <br />
-                  <br />
-                  <p>already have an account?
-                    <Link> click here.</Link></p>
-                  
+                  <label
+                    id="register-label"
+                    class="form-check-label"
+                    for="flexCheckDefault"
+                  >
+                    Show Password
+                  </label>
                 </div>
+              </div>
             </div>
             {/* carousel slide 2 */}
             <div class="carousel-item">
               <div className="input-container">
                 <div className="input-content">
-                  <label for="first-name">First Name</label>
+                  <label id="register-label" for="first-name">
+                    First Name
+                  </label>
                   <br />
                   <input
+                    id="register-firstname"
                     className="register-first mb-2"
                     type="text"
                     placeholder="First Name"
                     onChange={handleName}
                   />
                   <br />
-                  <label for="date-of-birth">Date of Birth</label>
+                  <label id="register-label" for="date-of-birth">
+                    Date of Birth
+                  </label>
                   <br />
-                  <input className="mb-2" type="date" onChange={handleDOB} />
+                  <input
+                    id="register-dob"
+                    className="mb-2"
+                    type="date"
+                    onChange={handleDOB}
+                  />
                   <br />
-                  <label for="gender">Gender</label>
+                  <label id="register-label" for="gender">
+                    Gender
+                  </label>
                   <br />
-                  <select class="custom-select" onChange={handleGender}>
+                  <select
+                    id="register-gender"
+                    class="custom-select"
+                    onChange={handleGender}
+                  >
                     <option value="" disabled selected>
                       Select your gender
                     </option>
@@ -225,7 +204,9 @@ function SimpleSlider() {
             <div class="carousel-item">
               <div className="input-container">
                 <div className="input-content">
-                  <label for="gender-preference">Gender Preference</label>
+                  <label id="register-label" for="gender-preference">
+                    Gender Preference
+                  </label>
                   <br />
                   <div class="form-check mr-2">
                     <input
@@ -235,7 +216,11 @@ function SimpleSlider() {
                       id="flexCheckDefault"
                       onChange={handleMalePref}
                     />
-                    <label class="form-check-label" for="flexCheckDefault">
+                    <label
+                      id="register-label"
+                      class="form-check-label"
+                      for="flexCheckDefault"
+                    >
                       Men
                     </label>
                   </div>
@@ -246,11 +231,14 @@ function SimpleSlider() {
                       value="F"
                       id="flexCheckDefault"
                     />
-                    <label class="form-check-label" for="flexCheckDefault">
+                    <label
+                      id="register-label"
+                      class="form-check-label"
+                      for="flexCheckDefault"
+                    >
                       Women
                     </label>
                   </div>
-                  <br />
                   <div class="form-check mt-2 mr-2">
                     <input
                       class="form-check-input"
@@ -258,7 +246,11 @@ function SimpleSlider() {
                       value="GN"
                       id="flexCheckDefault"
                     />
-                    <label class="form-check-label" for="flexCheckDefault">
+                    <label
+                      id="register-label"
+                      class="form-check-label"
+                      for="flexCheckDefault"
+                    >
                       Non-Binary
                     </label>
                   </div>
@@ -269,16 +261,32 @@ function SimpleSlider() {
                       value="O"
                       id="flexCheckDefault"
                     />
-                    <label class="form-check-label" for="flexCheckDefault">
+                    <label
+                      id="register-label"
+                      class="form-check-label"
+                      for="flexCheckDefault"
+                    >
                       Other
                     </label>
                   </div>
-                  <br />
-                  <label className="mt-2" for="age-preference">
+                </div>
+              </div>
+            </div>
+
+            {/* carousel slide 4 */}
+            <div class="carousel-item">
+              <div className="input-container">
+                <div className="input-content">
+                  <label
+                    id="register-label"
+                    className="mt-2"
+                    for="age-preference"
+                  >
                     Age Preference
                   </label>
                   <br />
                   <input
+                    id="register-minage"
                     className="mb-2"
                     type="number"
                     min="18"
@@ -288,6 +296,7 @@ function SimpleSlider() {
                   />
                   <br />
                   <input
+                    id="register-maxage"
                     className="mb-3"
                     type="number"
                     min="18"
@@ -297,7 +306,10 @@ function SimpleSlider() {
                   />
                   <br />
                   <div className="d-flex justify-content-center">
-                    <button className="register-form button-styled" onClick={submit}>
+                    <button
+                      className="register-form button-styled"
+                      onClick={submit}
+                    >
                       Submit
                     </button>
                   </div>
@@ -330,6 +342,5 @@ function SimpleSlider() {
     </div>
   );
 }
-
 
 export default SimpleSlider;

@@ -1,6 +1,112 @@
 @import "../index.css";
 
-.register-header {
+#register-container {
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80%;
+  width: 50%;
+  padding: 40px 80px;
+  background-color: var(--background);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#register-header {
+  font-size: 30px;
+  color: var(--white);
+  margin-bottom: 30px;
+}
+
+.carousel-inner,
+.carousel-items-container {
+  height: 100%;
+}
+
+.slide {
+  padding: 15px;
+  border-radius: 0.5em;
+  width: 600px;
+  height: 400px;
+}
+
+#register-label {
+  color: var(--primary);
+}
+#register-password,
+#register-firstname,
+#register-dob,
+#register-gender,
+#register-minage,
+#register-maxage {
+  background-color: transparent;
+  border: solid 1px var(--secondary);
+  border-radius: 2px;
+  width: 100%;
+  padding: 10px;
+}
+#register-password,
+#show-password,
+#register-firstname,
+#register-dob,
+#register-gender,
+#register-minage,
+#register-maxage,
+select,
+textarea {
+  color: var(--white);
+}
+
+.carousel-control-prev {
+  margin-left: 25%;
+}
+.carousel-control-next {
+  margin-right: 25%;
+}
+.carousel-control-prev,
+.carousel-control-next {
+  width: 80px; /* Adjust the width of the controls */
+  height: 40px; /* Adjust the height of the controls */
+  color: #ffffff; /* Set the text color */
+  background-color: #663b94; /* Set the background color to purple */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Add border-radius for rounded corners */
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 75%;
+  opacity: 1;
+}
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  opacity: 1;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-image: none; /* Remove default background image */
+  font-size: 20px; /* Adjust the font size of the control icons */
+  margin-top: 1px; /* Adjust the vertical alignment of the icons */
+}
+.carousel-control-prev span,
+.carousel-control-next span {
+  display: none; /* Hide the default visually-hidden text */
+}
+.carousel-control-prev::before {
+  content: "Prev"; /* Add custom text for the previous button */
+}
+.carousel-control-next::before {
+  content: "Next"; /* Add custom text for the next button */
+}
+
+.carousel-inner .carousel-item {
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+
+/* .register-header {
   background: var(--white);
   width: 500px;
   text-align: center;
@@ -22,12 +128,6 @@
 .simple-slider {
   position: relative;
   bottom: 44px;
-}
-
-.carousel-inner .carousel-item {
-  transition: -webkit-transform 0.3s ease;
-  transition: transform 0.3s ease;
-  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
 }
 .slide {
   padding: 15px;
@@ -85,7 +185,7 @@ input[type="number"] {
 }
 input[type="checkbox"]:checked:before {
   background: var(--white);
-}
+} */
 
 /* .slider-item {
   text-align: center;
