@@ -1,0 +1,114 @@
+#login-box {
+  position: fixed;
+  left: 5%;
+  top: 55%;
+  transform: translateY(-50%);
+  height: 80%;
+  width: 40%;
+  padding: 40px 80px;
+  background-color: var(--background);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#login-heading {
+  color: var(--white);
+  font-size: 25px;
+  margin-bottom: 40px;
+}
+#login-input {
+  margin-bottom: 20px;
+}
+.fa-user,
+.fa-lock {
+  color: var(--primary);
+  font-size: 18px;
+}
+#login-user,
+#login-password {
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  background-image: linear-gradient(var(--primary), var(--primary));
+  background-position: bottom 5px center;
+  background-size: calc(100% - 10px) 1px;
+  background-repeat: no-repeat;
+  padding: 10px;
+}
+#login-user,
+#login-password,
+select,
+textarea {
+  color: var(--white);
+}
+::placeholder {
+  color: var(--secondary);
+}
+input:focus {
+  outline: none;
+}
+
+#remember-me {
+  color: var(--primary);
+}
+input[type="checkbox"] {
+  background-color: var(--tertiary);
+  border: 1px solid var(--gray);
+}
+input[type="checkbox"]:checked {
+  background-color: var(--secondary);
+}
+
+#login-form-btn {
+  background-color: var(--secondary);
+  border: 1px solid var(--secondary);
+  color: white;
+  padding: 8px 30px;
+  border-radius: 5px;
+  margin-top: 20px;
+  transition: all 100ms ease-in-out;
+}
+#login-form-btn:hover {
+  background-color: transparent;
+}
+
+#alt-login-container {
+  margin: 35px 0;
+}
+#alt-login {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid var(--gray);
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+  color: var(--gray);
+}
+#alt-login span {
+  background: var(--background);
+  padding: 0 10px;
+}
+.fa-google,
+.fa-facebook,
+.fa-twitter {
+  font-size: 25px;
+  color: var(--secondary);
+  transition: all 100ms ease-in-out;
+}
+.fa-google:hover,
+.fa-facebook:hover,
+.fa-twitter:hover {
+  color: var(--primary);
+}
+#circle {
+  background-color: var(--tertiary);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#sign-up {
+  color: var(--gray);
+}

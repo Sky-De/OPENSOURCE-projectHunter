@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import AWS from "aws-sdk";
 
-let HOST
+let HOST;
 if (process.env.REACT_APP_NODE_ENV === "dev") {
-  console.log("Welcome to Dev mode")
+  console.log("Welcome to Dev mode");
   HOST = "http://localhost:5000";
-}
-else {
-  HOST = "http://127.0.0.1"
+} else {
+  HOST = "http://127.0.0.1";
 }
 
 const Home = () => {
@@ -16,7 +15,7 @@ const Home = () => {
   const awsSecret = process.env.REACT_APP_AWS_SECRET;
 
   useEffect(() => {
-    getUser()
+    getUser();
   }, []);
 
   async function getUser() {
@@ -28,16 +27,16 @@ const Home = () => {
 
     const s3 = new AWS.S3();
 
-    console.log(localStorage.getItem('accessToken'))
-    const res = await fetch(HOST + '/api/user', {
+    console.log(localStorage.getItem("accessToken"));
+    const res = await fetch(HOST + "/api/user", {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
-        'Content-Type': 'application/json'
-      }
-    })
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        "Content-Type": "application/json",
+      },
+    });
 
     const data = await res.json();
-    console.log(data)
+    console.log(data);
 
     const params = {
       Bucket: "tindeggle-profile-pics",
