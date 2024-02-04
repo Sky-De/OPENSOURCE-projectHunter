@@ -39,8 +39,8 @@ const upload = multer({ storage: storage });
 
 function getToken(req) {
   const bearer = req.get('Authorization');
-  if (!bearer) return { error: 'token is missing', status: 400 };
+  if (!bearer) return { error: 'Authentication header is missing', status: 400 };
   const token = bearer.split('Bearer ')[1];
-  if (!token) return { error: 'token is missing', status: 400 };
+  if (!token) return { error: 'Token is missing', status: 400 };
   return { token: token };
 }
