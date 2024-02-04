@@ -18,7 +18,7 @@ async function createUser(req, res) {
   let invite = await Invite.findOne({
     where: { invite_key: data.ikey },
   });
-  if (!invite) return res.status(400).send('no invite');
+  if (!invite) return res.status(404).send('no invite');
   const notValid = await validate(data, year); // Input Validation
   if ('error' in notValid) {
     return res.status(notValid.status).send(notValid.error);
@@ -53,7 +53,7 @@ async function createUser(req, res) {
 
 async function validate(data, year) {
   if (year < 18) {
-    return { error: 'Jailbait', status: 400 };
+    return { error: 'Jailbait', status: 406 };
   }
 
   const requiredFields = [
@@ -74,7 +74,7 @@ async function validate(data, year) {
   }
 
   if (!validGenders.includes(data.gender))
-    return { error: 'Incorrect gender value', status: 400 }; // Make sure the inputted gender is an option
+    return { error: 'Incorrect gender value', status: 406 }; // Make sure the inputted gender is an option
 
   schema
     .is()
@@ -100,7 +100,7 @@ async function validate(data, year) {
       status: 400,
     };
   }
-  return { success: 'Validation passed', status: 200 };
+  return { success: 'Validation passed', status: 100 };
 }
 
 function yearsconversion(milli) {

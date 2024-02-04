@@ -13,7 +13,7 @@ async function login(req, res) {
     bcrypt.compare(data.password, user.password, async function (err, result) {
       console.log(data.password, user.password);
       if (err || !result)
-        return res.status(400).send('Incorrect username or password');
+        return res.status(500).send('Could not retrieve token');
       const token = jwt.sign({ user }, jwtSecret, {
         expiresIn: expirationTime,
       });
