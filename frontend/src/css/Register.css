@@ -16,7 +16,7 @@
 #register-header {
   font-size: 30px;
   color: var(--white);
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
 }
 
 .carousel-inner,
@@ -25,16 +25,20 @@
 }
 
 .slide {
-  padding: 15px;
+  /* padding: 15px; */
   border-radius: 0.5em;
   width: 600px;
   height: 400px;
 }
 
+#pwd-params {
+  font-size: 12px;
+}
 #register-label {
   color: var(--primary);
 }
 #register-password,
+#register-confirm-password,
 #register-firstname,
 #register-dob,
 #register-gender,
@@ -47,6 +51,7 @@
   padding: 10px;
 }
 #register-password,
+#register-confirm-password,
 #show-password,
 #register-firstname,
 #register-dob,
@@ -76,7 +81,7 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: center;
-  top: 75%;
+  top: 70%;
   opacity: 1;
 }
 .carousel-control-prev:hover,
@@ -105,94 +110,3 @@ textarea {
   transition: transform 0.3s ease;
   transition: transform 0.3s ease, -webkit-transform 0.3s ease;
 }
-
-/* .register-header {
-  background: var(--white);
-  width: 500px;
-  text-align: center;
-  position: relative;
-  padding: 16px 0;
-  border-radius: 0.2em 0.2em 0 0;
-  z-index: 2;
-}
-
-.register {
-  background: rgb(237, 67, 103);
-  background: var(--gradient);
-  height: 100%;
-  width: 100%;
-  position: fixed;
-  padding-top: 20px;
-}
-
-.simple-slider {
-  position: relative;
-  bottom: 44px;
-}
-.slide {
-  padding: 15px;
-  background-color: var(--white);
-  border-radius: 0.5em;
-  width: 500px;
-  height: 400px;
-}
-.carousel-inner,
-.carousel-items-container {
-  height: 100%;
-}
-.carousel-item {
-  padding: 5px;
-  height: 100%;
-}
-.input-container {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-input,
-select,
-textarea,
-.custom-select,
-input[type="number"] {
-  color: black;
-}
-input.register-first,
-input.register-user,
-input.register-password,
-input.register-email,
-input[type="date"],
-input[type="number"] {
-  background: var(--white);
-  border: 1px solid #ced4da;
-  padding: 0.375rem 0.75rem;
-  border-radius: 0.25rem;
-}
-input[type="date"],
-input[type="number"] {
-  width: 100%;
-}
-input[type="number"] {
-  width: 150px;
-}
-::-webkit-calendar-picker-indicator {
-  filter: invert(1);
-}
-.form-check,
-.form-check-label {
-  display: inline;
-}
-input[type="checkbox"]:checked:before {
-  background: var(--white);
-} */
-
-/* .slider-item {
-  text-align: center;
-  justify-content: center;
-  display: flex;
-}
-
-.panel {
-  background: var(--primary);
-} */

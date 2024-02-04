@@ -23,8 +23,7 @@ root.render(
         <Route path="/signup" element={<SignUp />} />
         <Route path="/emailsent/:username" element={<EmailSent />} />
         <Route path="/home" element={<Home />} />
-        {/* <Route path="/register/invite/:ikey" element={<Register />} /> */}
-        <Route path="/register" element={<Register />} />
+        <Route path="/signup/invite/:ikey" element={<Register />} />
       </Switch>
     </Router>
   </React.StrictMode>
