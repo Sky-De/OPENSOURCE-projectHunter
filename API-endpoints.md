@@ -1,6 +1,6 @@
 # localhost:5000/api/user/invite
 ## POST -- Create Invite
-In `localhost:3000/signup`, the user will input username and email, and upon submission, frontend will send: `POST localhost:5000/api/user/invite` to backend, which will create an Invite object storing the username, email, expiration time, and invite_key AKA **ikey**. Backend will then send the link to the inputted email with the randomized **ikey**. (see *Get Invite*...)
+In `localhost:3000/signup`, the user will input username and email, and upon submission, frontend will send: `POST localhost:5000/api/user/invite` to backend, which will create an Invite object storing the username, email, expiration time, and invite_key AKA **ikey**. Backend will then send the link to the inputted email with the randomized **ikey**. (see [*Get Invite*](https://github.com/casanccs/projectHunter/blob/dev/API-endpoints.md#get----get-invite-userinviteikey)...)
 
 Frontend needs to have input validation here for username and email. If invalid, then display a message to the user.
 
@@ -27,7 +27,7 @@ The `request body` looks something like this:
   
   `ikey` is the *path variable* 
 ### response
-- `status code 400` -- `invite expired` --> Invite exists, but has "expired". In this case, we want to send a *new* invitation email. The response will also contain a json (same as with `status code 200`); we simply need to send `POST localhost:5000/api/user/invite` to backend again .  The body should contain the username and email, and the backend will send the invitation email (Refer back to *Create Invite* if needed). Frontend should let the user know their invitation had expired and to check their email again for the new link.
+- `status code 400` -- `invite expired` --> Invite exists, but has "expired". In this case, we want to send a *new* invitation email. The response will also contain a json (same as with `status code 200`); we simply need to send `POST localhost:5000/api/user/invite` to backend again .  The body should contain the username and email, and the backend will send the invitation email (Refer back to [*Create Invite*](https://github.com/casanccs/projectHunter/blob/dev/API-endpoints.md#post----create-invite) if needed). Frontend should let the user know their invitation had expired and to check their email again for the new link.
   - `status code 404` -- `no invite` --> No invite exists in the database with the specified `ikey`
 
   #### `status code 200`
@@ -46,7 +46,7 @@ The `request body` looks something like this:
 From this json, the frontend will need `"username"` and `"invite_key"`. (Well, I suppose the frontend would technically already have the invitation key from the link.... no matter.)
 1. We want to display a message like "Hi, *username*". 
 2. Have the user set up their account.
-3. Send the user data AND the `"invite_key"` (aka `ikey`) in a POST request to create the user. (See *Create User*)
+3. Send the user data AND the `"invite_key"` (aka `ikey`) in a POST request to create the user. (See [*Create User*](https://github.com/casanccs/projectHunter/blob/dev/API-endpoints.md#post----create-user))
 
 # localhost:5000/api/user
 ## POST -- Create User
@@ -74,7 +74,7 @@ Also, while there is input validation on the backend, we would like to have inpu
 	- *Field not provided* --> Some required *field* hasn't been submitted in the request. Maybe you forgot...
 	- *Password failed due to incorrect:...* -->The specified requirement(s) has not been fulfilled.
 - `status code 404`
-	- *no invite* --> You're not invited to the party. How'd you even get this address?... There was no invite in the database matching the provided `"ikey"`. This should've been caught back at the *Get Invite* stage...
+	- *no invite* --> You're not invited to the party. How'd you even get this address?... There was no invite in the database matching the provided `"ikey"`. This should've been caught back at the [*Get Invite*](https://github.com/casanccs/projectHunter/blob/dev/API-endpoints.md#get----get-invite-userinviteikey) stage...
 - `status code 406`
 	- *Jailbait* --> This ain't a daycare. We do not allow users under the age of 18. *I suggested we create the account in a suspended state until they're legal but... we're still unsure of how we'll enforce the age requirement.*
 	- *Incorrect gender value* --> So much for inclusivity, amirite?...
@@ -110,7 +110,7 @@ Upon success, response will be the user (from the database) as a json. Everythin
 }
 ```
 Now, what does the frontend do with this information? Absolutely nothing.
-After successful User creation, the frontend will redirect to login page: `"localhost:3000/"`. (See *Login*)
+After successful User creation, the frontend will redirect to login page: `"localhost:3000/"`. (See [*Login*](https://github.com/casanccs/projectHunter/blob/dev/API-endpoints.md#put----login))
 
 ## Put -- Login
 When the user types their username and password, it will send a `"PUT http://localhost:5000/api/user"` to the backend which the backend will create and store a jwt, send it as a response to the frontend, and the frontend will save the jwt.
