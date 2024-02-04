@@ -135,12 +135,56 @@ Upon successful login, the response is a json containing the jwt.
 
 }
 ```
-The frontend redirects to `"localhost:3000/home"`, and will IMMEDIATELY send: `"GET localhost:5000/api/user"` with the jwt in the header for the backend. Backend will then decode it, and send the corresponding User back to the frontend. (See *Get User*)
+The frontend redirects to `"localhost:3000/home"`, and will IMMEDIATELY send: `"GET localhost:5000/api/user"` with the jwt in the header for the backend. Backend will then decode it, and send the corresponding User back to the frontend. (See *[*Get User*](https://github.com/casanccs/projectHunter/blob/dev/API-endpoints.md#get----get-user))
+
+## GET -- Get User
+After successful login, frontend will IMMEDIATELY send: `"GET localhost:5000/api/user"` with the stored jwt in the header. Backend will then decode it, and send the corresponding User back to the frontend. 
+
+Header looks like this:
+`"Authorization": "Bearer eyJhbGciOiJIYouGetTheIdeazSdhobOFyamBoRD9esE2BK1azY0"`
+
+### response
+`status code 400`
+- *Authentication header is missing* -- You're gonna need to fix that.
+- *Token is missing* -- We expect the token to succeed `"Bearer "`. See example above
+`status code 401`: Invalid token could not be decoded
+**If token is missing or invalid, redirect the frontend to `"localhost:3000/"`.** 
+
+`status code 200`:
+Upon success, response will be the user (from the database) as a json. Everything except the password. (We have a little bug at the moment, which is why it currently *does* send the password.)
+```
+{
+    "id": 1,
+    "username": "testuser1",
+    "email": "zirolet@gmail.com",
+    "password": "$2b$04$bOPjPV4Lftwh.rkU3J97a.xxdrNQySq2ds2TY3tKHdZ0NT.UqMdWS",//THIS shouldn't be here
+    "firstName": "bob",
+    "dob": "2005-01-01T12:00:00.000Z",
+    "age": 19,
+    "gender": "M",
+    "pronoun": "Him",
+    "preferences": [
+        "F",
+        "T"
+    ],
+    "minAge": 18,
+    "maxAge": 20,
+    "city": "Houston",
+    "state": "TX",
+    "occupation": null,
+    "bio": null,
+    "distance": null,
+    "pictures": [
+        "default.png"
+    ],
+    "createdAt": "2024-02-03T12:29:28.791Z",
+    "updatedAt": "2024-02-03T12:29:28.791Z"
+}
+```
 
 
 ---
 up next:
-- Get User
 - Update User
 - localhost:5000/api/user/pic
     - Add Profile Picture
