@@ -1,8 +1,8 @@
-import { User } from '../models/user.js';
-import { validGenders } from '../shared.js';
+import { User } from '../../models/user.js';
+import { validGenders } from '../../shared.js';
 import bcrypt from 'bcrypt';
 import pkg from 'password-validator';
-import { Invite } from '../models/invite.js';
+import { Invite } from '../../models/invite.js';
 const passwordValidator = pkg;
 
 let schema = new passwordValidator();

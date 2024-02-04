@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
-import { s3, getToken, jwtSecret } from '../shared.js';
-import { User } from '../models/user.js';
+import { s3, getToken, jwtSecret } from '../../shared.js';
+import { User } from '../../models/user.js';
 
 export { addPicture };
 

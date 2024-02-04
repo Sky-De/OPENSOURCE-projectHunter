@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
-import { getToken, jwtSecret } from '../shared.js';
-import { User } from '../models/user.js';
+import { getToken, jwtSecret } from '../../shared.js';
+import { User } from '../../models/user.js';
 
 export { deletePicture };
 

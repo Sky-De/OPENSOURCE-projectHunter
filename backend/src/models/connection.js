@@ -22,7 +22,8 @@ if (process.env.NODE_ENV == 'dev') {
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
   });
-} else { // PRODUCTION!!
+} else {
+  // PRODUCTION!!
   seq = new Sequelize({
     dialect: 'postgres',
     database: process.env.DB_DB,

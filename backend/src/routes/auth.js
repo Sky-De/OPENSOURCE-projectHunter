@@ -1,12 +1,12 @@
 import { Router } from 'express';
-import { getUser } from '../controllers/getUser.js';
-import { createUser } from '../controllers/createUser.js';
-import { login } from '../controllers/login.js';
-import { updateUser } from '../controllers/updateUser.js';
-import { addPicture } from '../controllers/addPicture.js';
+import { getUser } from '../controllers/active_user/getUser.js';
+import { createUser } from '../controllers/account_creation/createUser.js';
+import { login } from '../controllers/account_creation/login.js';
+import { updateUser } from '../controllers/active_user/updateUser.js';
+import { addPicture } from '../controllers/active_user/addPicture.js';
 import { upload } from '../shared.js';
-import { createInvite } from '../controllers/createInv.js';
-import { getInvite } from '../controllers/getInvite.js';
+import { createInvite } from '../controllers/account_creation/createInv.js';
+import { getInvite } from '../controllers/account_creation/getInvite.js';
 //import { deletePicture } from '../controllers/deletePicture.js';
 
 export { authRouter };

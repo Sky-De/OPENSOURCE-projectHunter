@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
-import { User } from '../models/user.js';
-import { jwtSecret, expirationTime } from '../shared.js';
+import { User } from '../../models/user.js';
+import { jwtSecret, expirationTime } from '../../shared.js';
 import bcrypt from 'bcrypt';
 
 export { login };

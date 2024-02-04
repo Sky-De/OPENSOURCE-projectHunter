@@ -1,6 +1,6 @@
-import { Invite } from '../models/invite.js';
-import { User } from '../models/user.js';
-import { sendInvite } from '../utils/sendMail.js';
+import { Invite } from '../../models/invite.js';
+import { User } from '../../models/user.js';
+import { sendInvite } from '../../utils/sendMail.js';
 import randomstring from 'randomstring';
 import { Op } from 'sequelize';
 

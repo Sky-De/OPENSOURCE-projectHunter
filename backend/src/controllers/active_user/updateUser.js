@@ -1,4 +1,4 @@
-import { s3, getToken } from '../shared.js';
+import { s3, getToken } from '../../shared.js';
 
 export { updateUser };
 
