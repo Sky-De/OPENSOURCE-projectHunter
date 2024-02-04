@@ -136,3 +136,12 @@ Upon successful login, the response is a json containing the jwt.
 }
 ```
 The frontend redirects to `"localhost:3000/home"`, and will IMMEDIATELY send: `"GET localhost:5000/api/user"` with the jwt in the header for the backend. Backend will then decode it, and send the corresponding User back to the frontend. (See *Get User*)
+
+
+---
+up next:
+- Get User
+- Update User
+- localhost:5000/api/user/pic
+    - Add Profile Picture
+    - Delete Profile Picture
