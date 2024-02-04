@@ -32,11 +32,11 @@ async function createInvite(req, res) {
         return res.status(201).send('Invite sent.');
       } catch (err) {
         console.log('OOPS!');
-        return res.status(400).send(err);
+        return res.status(500).send(err);
       }
     } else {
       console.log('no invite?');
-      return res.status(400).send('error');
+      return res.status(404).send('error');
     }
   }
 }
@@ -48,10 +48,10 @@ async function validate(data) {
   if (!('email' in data)) return { error: 'Email not provided', status: 400 };
 
   if (await User.findOne({ where: { username: data.username } }))
-    return { error: 'Username is already taken', status: 400 }; // Username must be unique
+    return { error: 'Username is already taken', status: 409 }; // Username must be unique
 
   if (await User.findOne({ where: { email: data.email } }))
-    return { error: 'Email is already taken', status: 400 }; // Email must be unique
+    return { error: 'Email is already taken', status: 409 }; // Email must be unique
 
   if (
     await Invite.findOne({
@@ -63,7 +63,7 @@ async function validate(data) {
       },
     })
   )
-    return { error: 'Username is already taken', status: 400 }; // Username must be unique
+    return { error: 'Username is already taken', status: 409 }; // Username must be unique
 }
 
 async function resendInvite(req, res) {
@@ -79,10 +79,10 @@ async function resendInvite(req, res) {
   try {
     sendInvite(data.email, new_key);
     console.log('HOORAY!');
-    return res.status(200).send('New invite sent.');
+    return res.status(201).send('New invite sent.');
   } catch (err) {
     console.log('OOPS!');
-    return res.status(400).send(err);
+    return res.status(500).send(err);
   }
 }
 
