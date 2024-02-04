@@ -112,3 +112,6 @@ input[type="checkbox"]:checked {
 #sign-up {
   color: var(--gray);
 }
+#log-in {
+  color: var(--gray);
+}

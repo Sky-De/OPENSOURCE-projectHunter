@@ -116,9 +116,9 @@ function Login() {
 
         <p id="sign-up" className="d-flex justify-content-center">
           <span>
-            Not a member?{" "}
+            Don't have an account ?{" "}
             <Link id="sign-up" to="/signup">
-              Sign up now
+              Register here
             </Link>
           </span>
         </p>

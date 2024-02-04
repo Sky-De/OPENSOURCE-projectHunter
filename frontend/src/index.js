@@ -6,7 +6,7 @@ import {
   Routes as Switch,
   Route,
 } from "react-router-dom";
-import { NavbarBootstrap } from "./components/NavbarBS";
+import { NavbarBootstrap } from "./components/navbarBS";
 import App from "./App";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
